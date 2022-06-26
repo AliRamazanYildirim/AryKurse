@@ -16,7 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{5E2634D6-352B-499E-AF95-D9C7983B47EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KostenloseKurse.Shared", "Shared\KostenloseKurse.Shared\KostenloseKurse.Shared.csproj", "{06500A0E-D8DD-4D61-8DBA-C64D00A737BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KostenloseKurse.Shared", "Shared\KostenloseKurse.Shared\KostenloseKurse.Shared.csproj", "{06500A0E-D8DD-4D61-8DBA-C64D00A737BE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
