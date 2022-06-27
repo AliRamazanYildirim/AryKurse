@@ -9,7 +9,7 @@ namespace KostenloseKurse.Dienste.Katalog.Dienste
     public interface IKategorieDienst
     {
         Task<Antwort<List<KategorieDüo>>> RufAlleDatenAsync();
-        Task<Antwort<KategorieDüo>> ErstellenAsync(Kategorie kategorie);
+        Task<Antwort<KategorieDüo>> ErstellenAsync(KategorieDüo kategorieDüo);
         Task<Antwort<KategorieDüo>> RufZurIDAsync(string ID);
     }
 }

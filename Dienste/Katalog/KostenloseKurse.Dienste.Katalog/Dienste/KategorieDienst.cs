@@ -26,10 +26,11 @@ namespace KostenloseKurse.Dienste.Katalog.Dienste
             var kategorien = await _kategorieCollection.Find(kategorie => true).ToListAsync();
             return Antwort<List<KategorieDüo>>.Erfolg(_mapper.Map<List<KategorieDüo>>(kategorien), 200);
         }
-        public async Task<Antwort<KategorieDüo>>ErstellenAsync(Kategorie kategorie)
+        public async Task<Antwort<KategorieDüo>>ErstellenAsync(KategorieDüo kategorieDüo)
         {
+            var kategorie = _mapper.Map<Kategorie>(kategorieDüo);
             await _kategorieCollection.InsertOneAsync(kategorie);
-            return Antwort<KategorieDüo>.Erfolg(_mapper.Map<KategorieDüo>(kategorie), 200);
+            return Antwort<KategorieDüo>.Erfolg(_mapper.Map<KategorieDüo>(kategorieDüo), 200);
         }
         public async Task<Antwort<KategorieDüo>>RufZurIDAsync(string ID)
         {

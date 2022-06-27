@@ -29,6 +29,7 @@ namespace KostenloseKurse.Dienste.Katalog
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IKategorieDienst, KategorieDienst>();
+            services.AddScoped<IKursDienst, KursDienst>();
 
             services.AddAutoMapper(typeof(Startup));
             services.AddControllers();
