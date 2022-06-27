@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 
 namespace KostenloseKurse.Shared.Düo
 {
-    public class AntwortDüo<T>
+    public class Antwort<T>
     {
         public T Daten { get; set; }
         [JsonIgnore]//Ich habe JsonIgnore verwendet, da ich die Antwort auf die Liste nicht auch als Array serialisieren möchte.
@@ -14,26 +14,26 @@ namespace KostenloseKurse.Shared.Düo
         public bool IstErfolgreich { get; set; }
         public List<string> Fehler { get; set; }
         //Static Factory Method
-        public static AntwortDüo<T> Erfolg(T daten,int statusCode)
+        public static Antwort<T> Erfolg(T daten,int statusCode)
         {
-            return new AntwortDüo<T> { Daten = daten, StatusCode = statusCode, IstErfolgreich=true };
+            return new Antwort<T> { Daten = daten, StatusCode = statusCode, IstErfolgreich=true };
         }
-        public static AntwortDüo<T> Erfolg(int statusCode)
+        public static Antwort<T> Erfolg(int statusCode)
         {
-            return new AntwortDüo<T>{ Daten=default(T),StatusCode=statusCode,IstErfolgreich=true};
+            return new Antwort<T>{ Daten=default(T),StatusCode=statusCode,IstErfolgreich=true};
         }
-        public static AntwortDüo<T> Fehlschlagen(List<string> fehler,int statusCode )
+        public static Antwort<T> Fehlschlagen(List<string> fehler,int statusCode )
         {
-            return new AntwortDüo<T>
+            return new Antwort<T>
             {
                 Fehler = fehler,
                 StatusCode = statusCode,
                 IstErfolgreich = true
             };
         }
-        public static AntwortDüo<T>Fehlschlagen(string fehler, int statusCode)
+        public static Antwort<T>Fehlschlagen(string fehler, int statusCode)
         {
-            return new AntwortDüo<T> { Fehler = new List<string>() { fehler}, StatusCode = statusCode, IstErfolgreich = false };
+            return new Antwort<T> { Fehler = new List<string>() { fehler}, StatusCode = statusCode, IstErfolgreich = false };
         }
 
     }
