@@ -18,6 +18,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{5E2634
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KostenloseKurse.Shared", "Shared\KostenloseKurse.Shared\KostenloseKurse.Shared.csproj", "{06500A0E-D8DD-4D61-8DBA-C64D00A737BE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IdentityServer", "IdentityServer", "{410C965C-CA8D-4433-B2B0-796E4F62BEEF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KostenloseKurse.IdentityServer", "IdentityServer\KostenloseKurse.IdentityServer\KostenloseKurse.IdentityServer.csproj", "{E3A7BE46-08D4-404F-834D-4B0D78D1CAB0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +36,10 @@ Global
 		{06500A0E-D8DD-4D61-8DBA-C64D00A737BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06500A0E-D8DD-4D61-8DBA-C64D00A737BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06500A0E-D8DD-4D61-8DBA-C64D00A737BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3A7BE46-08D4-404F-834D-4B0D78D1CAB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3A7BE46-08D4-404F-834D-4B0D78D1CAB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3A7BE46-08D4-404F-834D-4B0D78D1CAB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3A7BE46-08D4-404F-834D-4B0D78D1CAB0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -40,6 +48,7 @@ Global
 		{351C65F4-6110-4DC5-87C1-D31F236868F3} = {1AA63EA4-7516-4C95-ACE9-73E640F28D5C}
 		{9438D5E8-44A3-4675-BB6A-4D14B9E06EC1} = {351C65F4-6110-4DC5-87C1-D31F236868F3}
 		{06500A0E-D8DD-4D61-8DBA-C64D00A737BE} = {5E2634D6-352B-499E-AF95-D9C7983B47EF}
+		{E3A7BE46-08D4-404F-834D-4B0D78D1CAB0} = {410C965C-CA8D-4433-B2B0-796E4F62BEEF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1010F50C-2458-4329-B8C9-D84E540F88FA}

@@ -17,6 +17,7 @@ namespace KostenloseKurse.Dienste.Katalog.Controllers
         {
             _kursDienst = kursDienst;
         }
+        [HttpGet]
         public async Task<IActionResult> RufAlleDaten()
         {
             var antwort = await _kursDienst.RufAlleDatenAsync();
@@ -29,7 +30,7 @@ namespace KostenloseKurse.Dienste.Katalog.Controllers
             var antwort=await _kursDienst.RufZurIDAsync(ID);
             return ErstellenAktionResultatBeispiel(antwort);
         }
-
+        [HttpGet]
         [Route("/api/[controller]/RufAlleZurBenutzerID/{benutzerID}")]
         public async Task<IActionResult> RufZurBenutzerID(string benutzerID)
         {

@@ -17,6 +17,7 @@ namespace KostenloseKurse.Dienste.Katalog.Controllers
         {
             _kategorieDienst = kategorieDienst;
         }
+        [HttpGet]
         public async Task<IActionResult>RufAlleDaten()
         {
             var kategorien = await _kategorieDienst.RufAlleDatenAsync();
@@ -24,6 +25,13 @@ namespace KostenloseKurse.Dienste.Katalog.Controllers
         }
 
         [HttpGet("{ID}")]
+        public async Task<IActionResult> RufZurID(string ID)
+        {
+            var kategorie = await _kategorieDienst.RufZurIDAsync(ID);
+            return ErstellenAktionResultatBeispiel(kategorie);
+        }
+
+        [HttpPost]
         public async Task<IActionResult> Erstellen(KategorieDüo kategorieDüo)
         {
             var antwort = await _kategorieDienst.ErstellenAsync(kategorieDüo);
