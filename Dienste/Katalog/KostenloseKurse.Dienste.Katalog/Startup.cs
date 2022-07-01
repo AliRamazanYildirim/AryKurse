@@ -1,8 +1,10 @@
 using KostenloseKurse.Dienste.Katalog.Dienste;
 using KostenloseKurse.Dienste.Katalog.Einstellungen;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -28,11 +30,21 @@ namespace KostenloseKurse.Dienste.Katalog
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+            {
+                options.Authority = Configuration["IdentityServerUrl"];
+                options.Audience = "ressource_katalog"; 
+                options.RequireHttpsMetadata = false;//Hier erklären wir, dass wir nicht mit Https arbeiten werden.
+
+            });
             services.AddScoped<IKategorieDienst, KategorieDienst>();
             services.AddScoped<IKursDienst, KursDienst>();
 
             services.AddAutoMapper(typeof(Startup));
-            services.AddControllers();
+            services.AddControllers(options=>
+            {
+                options.Filters.Add(new AuthorizeFilter());
+            });
 
             services.Configure<DatenbankEinstellungen>(Configuration.GetSection("DatenbankEinstellungen"));
             services.AddSingleton<IDatenbankEinstellungen>(sp =>
@@ -44,6 +56,8 @@ namespace KostenloseKurse.Dienste.Katalog
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "KostenloseKurse.Dienste.Katalog", Version = "v1" });
             });
+
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,7 +71,7 @@ namespace KostenloseKurse.Dienste.Katalog
             }
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
