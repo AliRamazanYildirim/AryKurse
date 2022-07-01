@@ -4,6 +4,7 @@
 
 using IdentityServer4;
 using IdentityServer4.Models;
+using System;
 using System.Collections.Generic;
 
 namespace KostenloseKurse.IdentityServer
@@ -21,6 +22,10 @@ namespace KostenloseKurse.IdentityServer
                    new IdentityResource[]
                    {
                     
+                    new IdentityResources.OpenId(),//OpenIdClaim
+                    new IdentityResources.Email(),//EmailClaim
+                    new IdentityResources.Profile(),//ProfileClaim
+                    new IdentityResource(){Name="rollen",DisplayName="Rolle",Description="Benutzer-Rolle",UserClaims=new[]{ "Benutzeransprüche" } }
                    };
 
         public static IEnumerable<ApiScope> ApiScopes =>
@@ -41,6 +46,20 @@ namespace KostenloseKurse.IdentityServer
                    ClientSecrets={new Secret("geheimnis".Sha256()) },
                    AllowedGrantTypes=GrantTypes.ClientCredentials,
                    AllowedScopes={ "katalog_volleerlaubnis", "fotobestand_volleerlaubnis",IdentityServerConstants.LocalApi.ScopeName }
+               },
+               new Client
+               {
+                   ClientName="Asp.Net Core MVC",
+                   ClientId="WebMvcClientFürBenutzer",
+                   ClientSecrets={new Secret("geheimnis".Sha256()) },
+                   AllowedGrantTypes=GrantTypes.ResourceOwnerPassword,//Es gibt kein Aktualisierungstoken in den ResourceOwnerPasswordAndClientCredentials
+                   AllowedScopes={ IdentityServerConstants.StandardScopes.Email,IdentityServerConstants.StandardScopes.OpenId,
+                       IdentityServerConstants.StandardScopes.Profile,IdentityServerConstants.StandardScopes.OfflineAccess },
+                   AccessTokenLifetime=1*60*60,
+                   RefreshTokenExpiration=TokenExpiration.Absolute,
+                   AbsoluteRefreshTokenLifetime=(int)(DateTime.Now.AddDays(60)-DateTime.Now).TotalSeconds,
+                   RefreshTokenUsage=TokenUsage.ReUse
+                   
                }
             };
     }
