@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
 using static IdentityServer4.IdentityServerConstants;
@@ -39,6 +40,16 @@ namespace KostenloseKurse.IdentityServer.Controllers
                 return BadRequest(Antwort<KeinInhaltDüo>.Fehlschlagen(resultat.Errors.Select(x => x.Description).ToList(), 400));
             }
             return NoContent();
+        }
+        [HttpGet]
+        public async Task<IActionResult>RufZurBenutzer()
+        {
+            var benutzerIdClaim = User.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Sub);
+            if (benutzerIdClaim == null)  return BadRequest();
+            var benutzer = await _userManager.FindByIdAsync(benutzerIdClaim.Value);
+            if (benutzer == null)  return BadRequest();
+            return Ok(new  { Id = benutzer.Id, UserName = benutzer.UserName,
+                Email = benutzer.Email, City = benutzer.City });
         }
     }
 }

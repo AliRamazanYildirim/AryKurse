@@ -51,10 +51,12 @@ namespace KostenloseKurse.IdentityServer
                {
                    ClientName="Asp.Net Core MVC",
                    ClientId="WebMvcClientFürBenutzer",
+                   AllowOfflineAccess=true,
                    ClientSecrets={new Secret("geheimnis".Sha256()) },
                    AllowedGrantTypes=GrantTypes.ResourceOwnerPassword,//Es gibt kein Aktualisierungstoken in den ResourceOwnerPasswordAndClientCredentials
                    AllowedScopes={ IdentityServerConstants.StandardScopes.Email,IdentityServerConstants.StandardScopes.OpenId,
-                       IdentityServerConstants.StandardScopes.Profile,IdentityServerConstants.StandardScopes.OfflineAccess },
+                       IdentityServerConstants.StandardScopes.Profile,IdentityServerConstants.StandardScopes.OfflineAccess,
+                       IdentityServerConstants.LocalApi.ScopeName,"rollen" },
                    AccessTokenLifetime=1*60*60,
                    RefreshTokenExpiration=TokenExpiration.Absolute,
                    AbsoluteRefreshTokenLifetime=(int)(DateTime.Now.AddDays(60)-DateTime.Now).TotalSeconds,
