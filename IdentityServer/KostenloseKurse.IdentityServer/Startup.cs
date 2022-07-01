@@ -4,6 +4,7 @@
 
 using IdentityServer4;
 using KostenloseKurse.IdentityServer.Data;
+using KostenloseKurse.IdentityServer.Dienste;
 using KostenloseKurse.IdentityServer.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -54,6 +55,8 @@ namespace KostenloseKurse.IdentityServer
                 .AddInMemoryApiScopes(Config.ApiScopes)
                 .AddInMemoryClients(Config.Clients)
                 .AddAspNetIdentity<ApplicationUser>();
+
+            builder.AddResourceOwnerValidator<IdentitaetsRessourcenbesitzerPasswortValidierer>();
 
             // not recommended for production - you need to store your key material somewhere secure
             builder.AddDeveloperSigningCredential();
