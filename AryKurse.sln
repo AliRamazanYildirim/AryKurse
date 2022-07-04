@@ -11,6 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KostenloseKurse.Dienste.Kat
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C2C150DA-22E9-4081-A28F-0EF0CB23065F}"
 	ProjectSection(SolutionItems) = preProject
+		Beispiel.txt = Beispiel.txt
 		Port.txt = Port.txt
 	EndProjectSection
 EndProject
