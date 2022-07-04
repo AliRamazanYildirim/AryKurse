@@ -1,1 +1,3 @@
 Katalog API-->http://localhost:5011
+ -fotoBestandAPI-->http://localhost:5012
+ IdentityServer-->http://localhost:5001
