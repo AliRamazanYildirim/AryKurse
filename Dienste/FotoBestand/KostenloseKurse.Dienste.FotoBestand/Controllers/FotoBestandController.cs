@@ -38,7 +38,7 @@ namespace KostenloseKurse.Dienste.FotoBestand.Controllers
 
             System.IO.File.Delete(weg);
 
-            return ErstellenAktionResultatBeispiel(Antwort<KeinInhaltDüo>.Erfolg(204));
+            return ErstellenAktionResultatBeispiel(Antwort<KeinInhaltDüo>.Erfolg(204));//Hier
         }
     }
 }
