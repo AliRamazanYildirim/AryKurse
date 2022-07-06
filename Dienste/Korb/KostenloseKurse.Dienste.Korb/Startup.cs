@@ -31,6 +31,7 @@ namespace KostenloseKurse.Dienste.Korb
         {
             services.AddHttpContextAccessor();
             services.AddScoped<ISharedIdentityDienst, SharedIdentityDienst>();
+            services.AddScoped<IKorbDienst, KorbDienst>();
             services.Configure<RedisEinstellungen>(Configuration.GetSection("RedisEinstellungen"));
 
 
