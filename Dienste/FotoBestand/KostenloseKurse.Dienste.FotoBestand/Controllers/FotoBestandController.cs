@@ -14,14 +14,14 @@ namespace KostenloseKurse.Dienste.FotoBestand.Controllers
     public class FotoBestandController : BrauchBasisController
     {
         [HttpPost]
-        public async Task<IActionResult> FotoSpeichern(IFormFile foto, CancellationToken cancellationToken)
+        public async Task<IActionResult> FotoSpeichern(IFormFile bild, CancellationToken cancellationToken)
         {
-            if (foto == null && foto.Length > 0)
+            if (bild == null && bild.Length > 0)
             {
-                var weg = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/bilder", foto.FileName);
+                var weg = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/bilder", bild.FileName);
                 using var strom = new FileStream(weg, FileMode.Create);
-                await foto.CopyToAsync(strom, cancellationToken);
-                var rückWeg = "bilder/" + foto.FileName;
+                await bild.CopyToAsync(strom, cancellationToken);
+                var rückWeg = "bilder/" + bild.FileName;
 
                 FotoDüo fotoDüo = new() { Url = rückWeg };
                 return ErstellenAktionResultatBeispiel(Antwort<FotoDüo>.Erfolg(fotoDüo, 200));
