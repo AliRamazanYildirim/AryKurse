@@ -1,3 +1,5 @@
+using KostenloseKurse.Dienste.Korb.Dienste;
+using KostenloseKurse.Dienste.Korb.Einstellungen;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -5,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
@@ -25,6 +28,15 @@ namespace KostenloseKurse.Dienste.Korb
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<RedisEinstellungen>(Configuration.GetSection("RedisEinstellungen"));
+
+            services.AddSingleton<RedisDienst>(sp =>
+            {
+                var redisEinstellungen = sp.GetRequiredService < IOptions<RedisEinstellungen>>().Value;
+                var redis = new RedisDienst(redisEinstellungen.Host, redisEinstellungen.Port);
+                redis.Verbinden();
+                return redis;
+            });
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
