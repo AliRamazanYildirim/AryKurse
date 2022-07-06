@@ -30,7 +30,7 @@ namespace KostenloseKurse.Dienste.FotoBestand
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
             {
                 options.Authority = Configuration["IdentityServerUrl"];
-                options.Audience = "fotobestand_katalog";
+                options.Audience = "ressource_fotobestand";
                 options.RequireHttpsMetadata = false;//Hier erklären wir, dass wir nicht mit Https arbeiten werden.
 
             });

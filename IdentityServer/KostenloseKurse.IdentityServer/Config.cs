@@ -14,7 +14,8 @@ namespace KostenloseKurse.IdentityServer
         public static IEnumerable<ApiResource> ApiResources => new ApiResource[]
         {
             new ApiResource("ressource_katalog"){Scopes={"katalog_volleerlaubnis"} },
-            new ApiResource("fotobestand_katalog"){Scopes={ "fotobestand_volleerlaubnis" } },
+            new ApiResource("ressource_fotobestand"){Scopes={ "fotobestand_volleerlaubnis" } },
+            new ApiResource("ressource_korb"){Scopes={ "korb_volleerlaubnis" } },
             new ApiResource(IdentityServerConstants.LocalApi.ScopeName)
         };
 
@@ -33,6 +34,7 @@ namespace KostenloseKurse.IdentityServer
             {
                 new ApiScope("katalog_volleerlaubnis","Vollzugriff auf die Katalog-API"),
                 new ApiScope("fotobestand_volleerlaubnis","Vollzugriff auf die Fotobestand-API"),
+                new ApiScope("korb_volleerlaubnis","Vollzugriff auf die Korb-API"),
                 new ApiScope(IdentityServerConstants.LocalApi.ScopeName)
             };
 
@@ -54,7 +56,7 @@ namespace KostenloseKurse.IdentityServer
                    AllowOfflineAccess=true,
                    ClientSecrets={new Secret("geheimnis".Sha256()) },
                    AllowedGrantTypes=GrantTypes.ResourceOwnerPassword,//Es gibt kein Aktualisierungstoken in den ResourceOwnerPasswordAndClientCredentials
-                   AllowedScopes={ IdentityServerConstants.StandardScopes.Email,IdentityServerConstants.StandardScopes.OpenId,
+                   AllowedScopes={"korb_volleerlaubnis", IdentityServerConstants.StandardScopes.Email,IdentityServerConstants.StandardScopes.OpenId,
                        IdentityServerConstants.StandardScopes.Profile,IdentityServerConstants.StandardScopes.OfflineAccess,
                        IdentityServerConstants.LocalApi.ScopeName,"rollen" },
                    AccessTokenLifetime=1*60*60,

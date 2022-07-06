@@ -37,7 +37,7 @@ namespace KostenloseKurse.Dienste.Korb
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
             {
                 options.Authority = Configuration["IdentityServerUrl"];
-                options.Audience = "ressource_katalog";
+                options.Audience = "ressource_korb";
                 options.RequireHttpsMetadata = false;//Hier erklären wir, dass wir nicht mit Https arbeiten werden.
 
             });
