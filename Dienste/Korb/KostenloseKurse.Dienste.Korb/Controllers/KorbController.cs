@@ -23,7 +23,7 @@ namespace KostenloseKurse.Dienste.Korb.Controllers
         [HttpGet]
         public async Task<IActionResult>RufKorb()
         {
-            var ansprüche = HttpContext.User.Claims;
+            //var ansprüche = HttpContext.User.Claims;
             return ErstellenAktionResultatBeispiel(await _korbDienst.RufKorb(_sharedIdentityDienst.RufBenutzerID));
         }
         [HttpPost]
@@ -32,6 +32,7 @@ namespace KostenloseKurse.Dienste.Korb.Controllers
             var antwort = await _korbDienst.SpeichernOderAktualisieren(korbDüo);
             return ErstellenAktionResultatBeispiel(antwort);
         }
+        [HttpDelete]
         public async Task<IActionResult>LöschenKorb()
         {
             return ErstellenAktionResultatBeispiel(await _korbDienst.Löschen(_sharedIdentityDienst.RufBenutzerID));
