@@ -1,9 +1,12 @@
 using KostenloseKurse.Dienste.Korb.Dienste;
 using KostenloseKurse.Dienste.Korb.Einstellungen;
 using KostenloseKurse.Shared.Dienste;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -29,6 +32,16 @@ namespace KostenloseKurse.Dienste.Korb
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var autorisierungsRichtlinieErfordern = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+            {
+                options.Authority = Configuration["IdentityServerUrl"];
+                options.Audience = "ressource_katalog";
+                options.RequireHttpsMetadata = false;//Hier erklären wir, dass wir nicht mit Https arbeiten werden.
+
+            });
+
             services.AddHttpContextAccessor();
             services.AddScoped<ISharedIdentityDienst, SharedIdentityDienst>();
             services.AddScoped<IKorbDienst, KorbDienst>();
@@ -43,7 +56,10 @@ namespace KostenloseKurse.Dienste.Korb
                 return redis;
             });
 
-            services.AddControllers();
+            services.AddControllers(options=>
+            {
+                options.Filters.Add(new AuthorizeFilter(autorisierungsRichtlinieErfordern));
+            });
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "KostenloseKurse.Dienste.Korb", Version = "v1" });
@@ -61,7 +77,7 @@ namespace KostenloseKurse.Dienste.Korb
             }
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
