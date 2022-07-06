@@ -16,7 +16,7 @@ namespace KostenloseKurse.Dienste.FotoBestand.Controllers
         [HttpPost]
         public async Task<IActionResult> FotoSpeichern(IFormFile bild, CancellationToken cancellationToken)
         {
-            if (bild == null && bild.Length > 0)
+            if (bild != null && bild.Length > 0)
             {
                 var weg = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/bilder", bild.FileName);
                 using var strom = new FileStream(weg, FileMode.Create);
