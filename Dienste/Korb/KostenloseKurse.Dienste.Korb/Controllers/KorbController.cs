@@ -23,6 +23,7 @@ namespace KostenloseKurse.Dienste.Korb.Controllers
         [HttpGet]
         public async Task<IActionResult>RufKorb()
         {
+            var ansprüche = HttpContext.User.Claims;
             return ErstellenAktionResultatBeispiel(await _korbDienst.RufKorb(_sharedIdentityDienst.RufBenutzerID));
         }
         [HttpPost]
