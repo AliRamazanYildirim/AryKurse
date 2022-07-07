@@ -1,3 +1,5 @@
+using KostenloseKurse.Dienste.Rabatt.Dienste;
+using KostenloseKurse.Shared.Dienste;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -29,6 +31,10 @@ namespace KostenloseKurse.Dienste.Rabatt
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHttpContextAccessor();
+            services.AddScoped<ISharedIdentityDienst, SharedIdentityDienst>();
+            services.AddScoped<IRabattDienst, RabattDienst>();
+
             var autorisierungsRichtlinieErfordern = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Remove("sub");
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
