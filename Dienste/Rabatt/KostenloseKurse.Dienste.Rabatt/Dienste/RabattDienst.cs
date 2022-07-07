@@ -23,7 +23,7 @@ namespace KostenloseKurse.Dienste.Rabatt.Dienste
         public async Task<Antwort<KeinInhaltDüo>> Aktualisieren(Modell.Rabatt rabatt)
         {
             var aktualisierenStatus = await _dbConnection.ExecuteAsync
-                ("Update rabatt set benutzerID=@BenutzerID,rate=@Rate,code=@Code where ID=@id",
+                ("update rabatt set benutzerid=@BenutzerID,rate=@Rate,code=@Code where ID=@id",
                 new { ID = rabatt.ID, BenutzerID = rabatt.BenutzerID, Code = rabatt.Code, Rate = rabatt.Rate }); 
             if(aktualisierenStatus>0)
             {
@@ -50,7 +50,7 @@ namespace KostenloseKurse.Dienste.Rabatt.Dienste
         public async Task<Antwort<Modell.Rabatt>> RufenNachCodeUndBenutzerIDAuf(string code, string benutzerID)
         {
             var rabatt = await _dbConnection.QueryAsync<Modell.Rabatt>
-                ("select * from rabatt where benutzerID=@BenutzerID and code=@Code",
+                ("select * from rabatt where benutzerid=@BenutzerID and code=@Code",
                 new {BenutzerID=benutzerID,Code=code});
             var esgibtRabatt = rabatt.FirstOrDefault();
             if(esgibtRabatt==null)
@@ -74,7 +74,7 @@ namespace KostenloseKurse.Dienste.Rabatt.Dienste
         public async Task<Antwort<KeinInhaltDüo>> Speichern(Modell.Rabatt rabatt)
         {
             var speichernStatus = await _dbConnection.ExecuteAsync
-                ("Insert Into rabatt(benutzerID,rate,code)Values(@BenutzerID,@Rate,@Code)", rabatt);
+                ("Insert Into rabatt(benutzerid,rate,code)Values(@BenutzerID,@Rate,@Code)", rabatt);
             if(speichernStatus>0)
             {
                 return Antwort<KeinInhaltDüo>.Erfolg(204);
