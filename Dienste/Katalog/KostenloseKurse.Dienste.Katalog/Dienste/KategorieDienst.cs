@@ -37,7 +37,7 @@ namespace KostenloseKurse.Dienste.Katalog.Dienste
             var kategorie = await _kategorieCollection.Find<Kategorie>(x => x.ID == ID).FirstOrDefaultAsync();
             if(kategorie==null)
             {
-                return Antwort<KategorieDüo>.Fehlschlagen("Kategorie wurde nicht gefunden.", 404);
+                return Antwort<KategorieDüo>.Fehlschlag("Kategorie wurde nicht gefunden.", 404);
             }
             return Antwort<KategorieDüo>.Erfolg(_mapper.Map<KategorieDüo>(kategorie), 200);
             

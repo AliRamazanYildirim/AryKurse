@@ -51,7 +51,7 @@ namespace KostenloseKurse.Dienste.Katalog.Dienste
             var kurs = await _kursCollection.Find<Kurs>(x => x.ID == ID).FirstOrDefaultAsync();
             if (kurs == null)
             {
-                return Antwort<KursDüo>.Fehlschlagen("Kurs wurde nicht gefunden.", 404);
+                return Antwort<KursDüo>.Fehlschlag("Kurs wurde nicht gefunden.", 404);
             }
             kurs.Kategorie = await _kategorieCollection.Find<Kategorie>(x => x.ID == kurs.KategorieID).FirstAsync();
             return Antwort<KursDüo>.Erfolg(_mapper.Map<KursDüo>(kurs), 200);
@@ -86,7 +86,7 @@ namespace KostenloseKurse.Dienste.Katalog.Dienste
             var resultat = await _kursCollection.FindOneAndReplaceAsync(x => x.ID == kursAktualisierenDüo.ID, aktualisierenKurs);
             if(resultat==null)
             {
-                return Antwort<KeinInhaltDüo>.Fehlschlagen("Kurs wurde nicht gefunden.",404);
+                return Antwort<KeinInhaltDüo>.Fehlschlag("Kurs wurde nicht gefunden.",404);
             }
             return Antwort<KeinInhaltDüo>.Erfolg(204);
         }
@@ -99,7 +99,7 @@ namespace KostenloseKurse.Dienste.Katalog.Dienste
             }
             else
             {
-                return Antwort<KeinInhaltDüo>.Fehlschlagen("Kurs wurde nicht gefunden", 404);
+                return Antwort<KeinInhaltDüo>.Fehlschlag("Kurs wurde nicht gefunden", 404);
             }
         }
     }

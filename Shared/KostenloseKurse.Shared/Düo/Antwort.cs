@@ -22,7 +22,7 @@ namespace KostenloseKurse.Shared.Düo
         {
             return new Antwort<T>{ Daten=default(T),StatusCode=statusCode,IstErfolgreich=true};
         }
-        public static Antwort<T> Fehlschlagen(List<string> fehler,int statusCode )
+        public static Antwort<T> Fehlschlag(List<string> fehler,int statusCode )
         {
             return new Antwort<T>
             {
@@ -31,7 +31,7 @@ namespace KostenloseKurse.Shared.Düo
                 IstErfolgreich = true
             };
         }
-        public static Antwort<T>Fehlschlagen(string fehler, int statusCode)
+        public static Antwort<T>Fehlschlag(string fehler, int statusCode)
         {
             return new Antwort<T> { Fehler = new List<string>() { fehler}, StatusCode = statusCode, IstErfolgreich = false };
         }

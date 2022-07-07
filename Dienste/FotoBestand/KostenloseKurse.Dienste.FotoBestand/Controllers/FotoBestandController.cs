@@ -26,14 +26,14 @@ namespace KostenloseKurse.Dienste.FotoBestand.Controllers
                 FotoDüo fotoDüo = new() { Url = rückWeg };
                 return ErstellenAktionResultatBeispiel(Antwort<FotoDüo>.Erfolg(fotoDüo, 200));
             }
-            return ErstellenAktionResultatBeispiel(Antwort<FotoDüo>.Fehlschlagen("Foto ist leer", 400));
+            return ErstellenAktionResultatBeispiel(Antwort<FotoDüo>.Fehlschlag("Foto ist leer", 400));
         }
         public IActionResult FotoLöschen(string fotoUrl)
         {
             var weg = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/bilder", fotoUrl);
             if (!System.IO.File.Exists(weg))
             {
-                return ErstellenAktionResultatBeispiel(Antwort<KeinInhaltDüo>.Fehlschlagen("Foto wurde nicht gefunden", 404));
+                return ErstellenAktionResultatBeispiel(Antwort<KeinInhaltDüo>.Fehlschlag("Foto wurde nicht gefunden", 404));
             }
 
             System.IO.File.Delete(weg);
