@@ -2,4 +2,5 @@ Dienste
 -Katalog API-->http://localhost:5011
 -fotoBestandAPI-->http://localhost:5012
 -korbAPI-->http://localhost:5013
+-rabatt-->http://localhost:5014
 IdentityServer-->http://localhost:5001
