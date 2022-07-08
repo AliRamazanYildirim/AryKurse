@@ -29,7 +29,7 @@ namespace KostenloseKurse.Dienste.Rabatt.Controllers
 
         //api/rabatt/7
         [HttpGet("{ID}")]
-        public async Task<IActionResult> GetById(int ID)
+        public async Task<IActionResult> RufenNachIDAuf(int ID)
         {
             var rabatt = await _rabattDienst.RufenNachIDAuf(ID);
 
