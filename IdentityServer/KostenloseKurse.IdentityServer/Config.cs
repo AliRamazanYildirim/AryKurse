@@ -17,6 +17,7 @@ namespace KostenloseKurse.IdentityServer
             new ApiResource("ressource_fotobestand"){Scopes={ "fotobestand_volleerlaubnis" } },
             new ApiResource("ressource_korb"){Scopes={ "korb_volleerlaubnis" } },
             new ApiResource("ressource_rabatt"){Scopes={ "rabatt_volleerlaubnis" } },
+            new ApiResource("ressource_bestellung"){Scopes={ "bestellung_volleerlaubnis" } },
             new ApiResource(IdentityServerConstants.LocalApi.ScopeName)
         };
 
@@ -37,6 +38,7 @@ namespace KostenloseKurse.IdentityServer
                 new ApiScope("fotobestand_volleerlaubnis","Vollzugriff auf die Fotobestand-API"),
                 new ApiScope("korb_volleerlaubnis","Vollzugriff auf die Korb-API"),
                 new ApiScope("rabatt_volleerlaubnis","Vollzugriff auf die Rabatt-API"),
+                new ApiScope("bestellung_volleerlaubnis","Vollzugriff auf die Bestellung-API"),
                 new ApiScope(IdentityServerConstants.LocalApi.ScopeName)
             };
 
@@ -58,7 +60,8 @@ namespace KostenloseKurse.IdentityServer
                    AllowOfflineAccess=true,
                    ClientSecrets={new Secret("geheimnis".Sha256()) },
                    AllowedGrantTypes=GrantTypes.ResourceOwnerPassword,//Es gibt kein Aktualisierungstoken in den ResourceOwnerPasswordAndClientCredentials
-                   AllowedScopes={"korb_volleerlaubnis","rabatt_volleerlaubnis", IdentityServerConstants.StandardScopes.Email,IdentityServerConstants.StandardScopes.OpenId,
+                   AllowedScopes={"korb_volleerlaubnis","rabatt_volleerlaubnis","bestellung_volleerlaubnis",
+                       IdentityServerConstants.StandardScopes.Email,IdentityServerConstants.StandardScopes.OpenId,
                        IdentityServerConstants.StandardScopes.Profile,IdentityServerConstants.StandardScopes.OfflineAccess,
                        IdentityServerConstants.LocalApi.ScopeName,"rollen" },
                    AccessTokenLifetime=1*60*60,
