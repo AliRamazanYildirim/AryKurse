@@ -14,9 +14,9 @@ namespace KostenloseKurse.Dienste.Bestellung.Domain.BestellungsAggregate
         public string BildUrl { get; private set; }
         public Decimal Preis { get; private set; }
 
-        //public BestellungsArtikel()
-        //{
-        //}
+        public BestellungsArtikel()
+        {
+        }
 
         public BestellungsArtikel(string produktID, string produktName, string bildUrl, decimal preis)
         {

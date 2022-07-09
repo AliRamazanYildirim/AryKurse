@@ -23,9 +23,9 @@ namespace KostenloseKurse.Dienste.Bestellung.Domain.BestellungsAggregate
 
         public IReadOnlyCollection<BestellungsArtikel> BestellungsArtikel => _bestellungen;
 
-        //public Bestellung()
-        //{
-        //}
+        public Bestellung()
+        {
+        }
 
         public Bestellung(string abnehmerID, Adresse adresse)
         {
