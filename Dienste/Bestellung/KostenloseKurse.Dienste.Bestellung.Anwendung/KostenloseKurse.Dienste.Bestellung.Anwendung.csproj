@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Shared\KostenloseKurse.Shared\KostenloseKurse.Shared.csproj" />
     <ProjectReference Include="..\KostenloseKurse.Dienste.Bestellung.Domain\KostenloseKurse.Dienste.Bestellung.Domain.csproj" />
     <ProjectReference Include="..\KostenloseKurse.Dienste.Bestellung.Infrastruktur\KostenloseKurse.Dienste.Bestellung.Infrastruktur.csproj" />
   </ItemGroup>

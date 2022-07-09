@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace KostenloseKurse.Dienste.Bestellung.Anwendung.Kartierung
 {
-    internal class BrauchKartierung:Profile
+    public class BrauchKartierung:Profile
     {
         public BrauchKartierung()
         {
