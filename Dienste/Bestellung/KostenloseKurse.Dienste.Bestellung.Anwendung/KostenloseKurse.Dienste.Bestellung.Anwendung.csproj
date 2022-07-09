@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\KostenloseKurse.Dienste.Bestellung.Domain\KostenloseKurse.Dienste.Bestellung.Domain.csproj" />
     <ProjectReference Include="..\KostenloseKurse.Dienste.Bestellung.Infrastruktur\KostenloseKurse.Dienste.Bestellung.Infrastruktur.csproj" />
   </ItemGroup>
