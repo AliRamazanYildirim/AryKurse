@@ -17,7 +17,13 @@ namespace KostenloseKurse.Gateway
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
+
+
+            Host.CreateDefaultBuilder(args).ConfigureAppConfiguration((hostingKontext, konfig) =>
+            {
+                konfig.AddJsonFile($"konfigurations{hostingKontext.HostingEnvironment.EnvironmentName.ToLower()}.json")
+                .AddEnvironmentVariables();
+            })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
