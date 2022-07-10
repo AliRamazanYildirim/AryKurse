@@ -36,15 +36,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KostenloseKurse.Dienste.Rab
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bestellung", "Bestellung", "{CC489AA7-F20E-4353-A23C-B749D5E1B07C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KostenloseKurse.Dienste.Bestellung", "Dienste\Bestellung\KostenloseKurse.Dienste.Bestellung\KostenloseKurse.Dienste.Bestellung.csproj", "{2E385FAD-76DC-40FA-96B5-0D81FF5B39EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KostenloseKurse.Dienste.Bestellung", "Dienste\Bestellung\KostenloseKurse.Dienste.Bestellung\KostenloseKurse.Dienste.Bestellung.csproj", "{2E385FAD-76DC-40FA-96B5-0D81FF5B39EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KostenloseKurse.Dienste.Bestellung.Anwendung", "Dienste\Bestellung\KostenloseKurse.Dienste.Bestellung.Anwendung\KostenloseKurse.Dienste.Bestellung.Anwendung.csproj", "{4F403449-C626-46F6-BD2E-53E2A820ED49}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KostenloseKurse.Dienste.Bestellung.Anwendung", "Dienste\Bestellung\KostenloseKurse.Dienste.Bestellung.Anwendung\KostenloseKurse.Dienste.Bestellung.Anwendung.csproj", "{4F403449-C626-46F6-BD2E-53E2A820ED49}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KostenloseKurse.Dienste.Bestellung.Domain", "Dienste\Bestellung\KostenloseKurse.Dienste.Bestellung.Domain\KostenloseKurse.Dienste.Bestellung.Domain.csproj", "{2E49FECA-909C-4E45-8302-AF04E5AA9A1E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KostenloseKurse.Dienste.Bestellung.Domain", "Dienste\Bestellung\KostenloseKurse.Dienste.Bestellung.Domain\KostenloseKurse.Dienste.Bestellung.Domain.csproj", "{2E49FECA-909C-4E45-8302-AF04E5AA9A1E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KostenloseKurse.Dienste.Bestellung.Domain.Core", "Dienste\Bestellung\KostenloseKurse.Dienste.Bestellung.Domain.Core\KostenloseKurse.Dienste.Bestellung.Domain.Core.csproj", "{8580390B-2EE0-41F0-A6F4-069E09FA3B99}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KostenloseKurse.Dienste.Bestellung.Domain.Core", "Dienste\Bestellung\KostenloseKurse.Dienste.Bestellung.Domain.Core\KostenloseKurse.Dienste.Bestellung.Domain.Core.csproj", "{8580390B-2EE0-41F0-A6F4-069E09FA3B99}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KostenloseKurse.Dienste.Bestellung.Infrastruktur", "Dienste\Bestellung\KostenloseKurse.Dienste.Bestellung.Infrastruktur\KostenloseKurse.Dienste.Bestellung.Infrastruktur.csproj", "{20125E8B-D2E5-480F-9EA3-D9E4EE14A695}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KostenloseKurse.Dienste.Bestellung.Infrastruktur", "Dienste\Bestellung\KostenloseKurse.Dienste.Bestellung.Infrastruktur\KostenloseKurse.Dienste.Bestellung.Infrastruktur.csproj", "{20125E8B-D2E5-480F-9EA3-D9E4EE14A695}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FakeZahlung", "FakeZahlung", "{F69F6DA6-1781-4316-B3A6-FDD421950EFC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KostenloseKurse.Dienste.FakeZahlung", "Dienste\FakeZahlung\KostenloseKurse.Dienste.FakeZahlung\KostenloseKurse.Dienste.FakeZahlung.csproj", "{844AD830-6C0C-43AD-89A6-4F69D4276FB6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -96,6 +100,10 @@ Global
 		{20125E8B-D2E5-480F-9EA3-D9E4EE14A695}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{20125E8B-D2E5-480F-9EA3-D9E4EE14A695}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{20125E8B-D2E5-480F-9EA3-D9E4EE14A695}.Release|Any CPU.Build.0 = Release|Any CPU
+		{844AD830-6C0C-43AD-89A6-4F69D4276FB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{844AD830-6C0C-43AD-89A6-4F69D4276FB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{844AD830-6C0C-43AD-89A6-4F69D4276FB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{844AD830-6C0C-43AD-89A6-4F69D4276FB6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -117,6 +125,8 @@ Global
 		{2E49FECA-909C-4E45-8302-AF04E5AA9A1E} = {CC489AA7-F20E-4353-A23C-B749D5E1B07C}
 		{8580390B-2EE0-41F0-A6F4-069E09FA3B99} = {CC489AA7-F20E-4353-A23C-B749D5E1B07C}
 		{20125E8B-D2E5-480F-9EA3-D9E4EE14A695} = {CC489AA7-F20E-4353-A23C-B749D5E1B07C}
+		{F69F6DA6-1781-4316-B3A6-FDD421950EFC} = {1AA63EA4-7516-4C95-ACE9-73E640F28D5C}
+		{844AD830-6C0C-43AD-89A6-4F69D4276FB6} = {F69F6DA6-1781-4316-B3A6-FDD421950EFC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1010F50C-2458-4329-B8C9-D84E540F88FA}
