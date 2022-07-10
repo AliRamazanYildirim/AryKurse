@@ -14,7 +14,7 @@ namespace KostenloseKurse.Dienste.Katalog.Modelle
         [BsonRepresentation(MongoDB.Bson.BsonType.Decimal128)]
         public decimal Preis { get; set; }
         public string BenutzerID { get; set; }
-        public string Picture { get; set; }
+        public string Bild { get; set; }
         [BsonRepresentation(MongoDB.Bson.BsonType.DateTime)]
         public DateTime Erstellungsdatum { get; set; }
         public Eigenschaft Eigenschaft {get; set;}

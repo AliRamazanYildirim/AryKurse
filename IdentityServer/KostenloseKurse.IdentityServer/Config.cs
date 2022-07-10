@@ -19,6 +19,7 @@ namespace KostenloseKurse.IdentityServer
             new ApiResource("ressource_rabatt"){Scopes={ "rabatt_volleerlaubnis" } },
             new ApiResource("ressource_bestellung"){Scopes={ "bestellung_volleerlaubnis" } },
             new ApiResource("ressource_fakezahlung"){Scopes={ "fakezahlung_volleerlaubnis" } },
+            new ApiResource("ressource_gateway"){Scopes={ "gateway_volleerlaubnis" } },
             new ApiResource(IdentityServerConstants.LocalApi.ScopeName)
         };
 
@@ -41,6 +42,7 @@ namespace KostenloseKurse.IdentityServer
                 new ApiScope("rabatt_volleerlaubnis","Vollzugriff auf die Rabatt-API"),
                 new ApiScope("bestellung_volleerlaubnis","Vollzugriff auf die Bestellung-API"),
                 new ApiScope("fakezahlung_volleerlaubnis","Vollzugriff auf die Fakezahlung-API"),
+                new ApiScope("gateway_volleerlaubnis","Vollzugriff auf die Gateway-API"),
                 new ApiScope(IdentityServerConstants.LocalApi.ScopeName)
             };
 
@@ -53,7 +55,8 @@ namespace KostenloseKurse.IdentityServer
                    ClientId="WebMvcClient",
                    ClientSecrets={new Secret("geheimnis".Sha256()) },
                    AllowedGrantTypes=GrantTypes.ClientCredentials,
-                   AllowedScopes={ "katalog_volleerlaubnis", "fotobestand_volleerlaubnis",IdentityServerConstants.LocalApi.ScopeName }
+                   AllowedScopes={ "katalog_volleerlaubnis", "fotobestand_volleerlaubnis","gateway_volleerlaubnis",
+                       IdentityServerConstants.LocalApi.ScopeName }
                },
                new Client
                {
@@ -62,7 +65,8 @@ namespace KostenloseKurse.IdentityServer
                    AllowOfflineAccess=true,
                    ClientSecrets={new Secret("geheimnis".Sha256()) },
                    AllowedGrantTypes=GrantTypes.ResourceOwnerPassword,//Es gibt kein Aktualisierungstoken in den ResourceOwnerPasswordAndClientCredentials
-                   AllowedScopes={"korb_volleerlaubnis","rabatt_volleerlaubnis","bestellung_volleerlaubnis","fakezahlung_volleerlaubnis",
+                   AllowedScopes={"korb_volleerlaubnis","rabatt_volleerlaubnis","bestellung_volleerlaubnis",
+                       "fakezahlung_volleerlaubnis","gateway_volleerlaubnis",
                        IdentityServerConstants.StandardScopes.Email,IdentityServerConstants.StandardScopes.OpenId,
                        IdentityServerConstants.StandardScopes.Profile,IdentityServerConstants.StandardScopes.OfflineAccess,
                        IdentityServerConstants.LocalApi.ScopeName,"rollen" },

@@ -21,7 +21,7 @@ namespace KostenloseKurse.Gateway
 
             Host.CreateDefaultBuilder(args).ConfigureAppConfiguration((hostingKontext, konfig) =>
             {
-                konfig.AddJsonFile($"konfigurations{hostingKontext.HostingEnvironment.EnvironmentName.ToLower()}.json")
+                konfig.AddJsonFile($"configuration.{hostingKontext.HostingEnvironment.EnvironmentName.ToLower()}.json")
                 .AddEnvironmentVariables();
             })
                 .ConfigureWebHostDefaults(webBuilder =>
