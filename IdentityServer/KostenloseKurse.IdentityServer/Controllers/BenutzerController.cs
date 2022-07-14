@@ -37,7 +37,7 @@ namespace KostenloseKurse.IdentityServer.Controllers
             var resultat = await _userManager.CreateAsync(benutzer, anmeldenDüo.Passwort);
             if(!resultat.Succeeded)
             {
-                return BadRequest(Antwort<KeinInhaltDüo>.Fehlschlag(resultat.Errors.Select(x => x.Description).ToList(), 400));
+                return base.BadRequest(Antwort<Shared.Düo.KeinInhaltDüo>.Fehlschlag(resultat.Errors.Select(x => x.Description).ToList(), 400));
             }
             return NoContent();
         }

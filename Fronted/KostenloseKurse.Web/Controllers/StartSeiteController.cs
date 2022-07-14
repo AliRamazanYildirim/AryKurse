@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace KostenloseKurse.Web.Controllers
 {
-    public class HomeController : Controller
+    public class StartSeiteController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<StartSeiteController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public StartSeiteController(ILogger<StartSeiteController> logger)
         {
             _logger = logger;
         }

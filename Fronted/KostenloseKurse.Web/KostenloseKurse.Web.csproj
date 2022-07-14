@@ -6,9 +6,12 @@
 
   <ItemGroup>
     <PackageReference Include="IdentityModel" Version="5.2.0" />
+    <PackageReference Include="Microsoft.IdentityModel.Protocols.OpenIdConnect" Version="6.21.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\IdentityServer\KostenloseKurse.IdentityServer\KostenloseKurse.IdentityServer.csproj" />
     <ProjectReference Include="..\..\Shared\KostenloseKurse.Shared\KostenloseKurse.Shared.csproj" />
   </ItemGroup>
 

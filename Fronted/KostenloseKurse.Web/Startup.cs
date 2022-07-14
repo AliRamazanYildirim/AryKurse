@@ -1,4 +1,7 @@
+using KostenloseKurse.Web.Dienste;
+using KostenloseKurse.Web.Dienste.Interfaces;
 using KostenloseKurse.Web.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -23,8 +26,18 @@ namespace KostenloseKurse.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHttpContextAccessor();
+            services.AddHttpClient<IIdentityDienst, IdentityDienst>();
             services.Configure<DienstApiEinstellungen>(Configuration.GetSection("DienstApiEinstellungen"));
             services.Configure<ClientEinstellungen>(Configuration.GetSection("ClientEinstellungen"));
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie
+                (CookieAuthenticationDefaults.AuthenticationScheme,options=>
+                {
+                    options.LoginPath = "/Auth/Einloggen";
+                    options.ExpireTimeSpan = TimeSpan.FromDays(60);
+                    options.SlidingExpiration = true;
+                    options.Cookie.Name = "arywebcookie";
+                });
             services.AddControllersWithViews();
         }
 
@@ -37,19 +50,19 @@ namespace KostenloseKurse.Web
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/StartSeite/Error");
             }
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=StartSeite}/{action=Index}/{id?}");
             });
         }
     }

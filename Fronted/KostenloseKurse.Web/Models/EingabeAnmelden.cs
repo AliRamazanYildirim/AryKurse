@@ -13,6 +13,6 @@ namespace KostenloseKurse.Web.Models
         public string Passwort{ get; set; }
 
         [Display(Name = "Erinnere dich an mich")]
-        public bool ErinnereDich { get; set; }
+        public bool ErinnereMich { get; set; }
     }
 }
