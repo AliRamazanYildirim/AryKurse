@@ -1,5 +1,6 @@
 using KostenloseKurse.Web.Dienste;
 using KostenloseKurse.Web.Dienste.Interfaces;
+using KostenloseKurse.Web.Handler;
 using KostenloseKurse.Web.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
@@ -36,7 +37,8 @@ namespace KostenloseKurse.Web
             services.AddHttpClient<IBenutzerDienst, BenutzerDienst>(options=>
             {
                 options.BaseAddress = new Uri(dienstApiEinstellungen.IdentityBaseUri);
-            });
+                
+            }).AddHttpMessageHandler<RessourcenEigentümerPasswortTokenHandler>();
             
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie
                 (CookieAuthenticationDefaults.AuthenticationScheme,options=>
