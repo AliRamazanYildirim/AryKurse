@@ -26,10 +26,18 @@ namespace KostenloseKurse.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddHttpContextAccessor();
-            services.AddHttpClient<IIdentityDienst, IdentityDienst>();
             services.Configure<DienstApiEinstellungen>(Configuration.GetSection("DienstApiEinstellungen"));
             services.Configure<ClientEinstellungen>(Configuration.GetSection("ClientEinstellungen"));
+            services.AddHttpContextAccessor();
+
+            var dienstApiEinstellungen = Configuration.GetSection("DienstApiEinstellungen").Get<DienstApiEinstellungen>();
+
+            services.AddHttpClient<IIdentityDienst, IdentityDienst>();
+            services.AddHttpClient<IBenutzerDienst, BenutzerDienst>(options=>
+            {
+                options.BaseAddress = new Uri(dienstApiEinstellungen.IdentityBaseUri);
+            });
+            
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie
                 (CookieAuthenticationDefaults.AuthenticationScheme,options=>
                 {
