@@ -33,6 +33,7 @@ namespace KostenloseKurse.Web
             services.AddHttpContextAccessor();
             services.AddScoped<ISharedIdentityDienst, SharedIdentityDienst>();
             var dienstApiEinstellungen = Configuration.GetSection("DienstApiEinstellungen").Get<DienstApiEinstellungen>();
+            services.AddHttpClient<ITokenDienstFürClientAnmeldeInformationen, TokenDienstFürClientAnmeldeInformationen>();
 
             services.AddScoped<RessourcenEigentümerPasswortTokenHandler>();
             services.AddHttpClient<IIdentityDienst, IdentityDienst>();
