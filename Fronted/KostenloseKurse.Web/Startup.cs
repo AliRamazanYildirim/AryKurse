@@ -35,6 +35,10 @@ namespace KostenloseKurse.Web
 
             services.AddScoped<RessourcenEigentümerPasswortTokenHandler>();
             services.AddHttpClient<IIdentityDienst, IdentityDienst>();
+            services.AddHttpClient<IKatalogDienst, KatalogDienst>(options=>
+            {
+                options.BaseAddress = new Uri($"{dienstApiEinstellungen.GatewayBaseUri}/{dienstApiEinstellungen.Katalog.Weg}");
+            });
             services.AddHttpClient<IBenutzerDienst, BenutzerDienst>(options=>
             {
                 options.BaseAddress = new Uri(dienstApiEinstellungen.IdentityBaseUri);
