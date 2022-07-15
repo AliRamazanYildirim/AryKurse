@@ -1,3 +1,4 @@
+using KostenloseKurse.Shared.Dienste;
 using KostenloseKurse.Web.Dienste;
 using KostenloseKurse.Web.Dienste.Interfaces;
 using KostenloseKurse.Web.Handler;
@@ -30,7 +31,7 @@ namespace KostenloseKurse.Web
             services.Configure<DienstApiEinstellungen>(Configuration.GetSection("DienstApiEinstellungen"));
             services.Configure<ClientEinstellungen>(Configuration.GetSection("ClientEinstellungen"));
             services.AddHttpContextAccessor();
-
+            services.AddScoped<ISharedIdentityDienst, SharedIdentityDienst>();
             var dienstApiEinstellungen = Configuration.GetSection("DienstApiEinstellungen").Get<DienstApiEinstellungen>();
 
             services.AddScoped<RessourcenEigentümerPasswortTokenHandler>();

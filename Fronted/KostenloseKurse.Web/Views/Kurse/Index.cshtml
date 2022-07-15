@@ -1,0 +1,56 @@
+﻿@model List<KursViewModell>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Kurse</h5>
+
+                <a asp-controller="Kurse" asp-action="Erstellen" class="btn btn-primary mb-3">Erstellen Sie einen Kurs</a>
+                @if (Model.Any())
+                {
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Bild</th>
+                                <th>Kursname</th>
+                                <th>Preis</th>
+                                <th>Dauer</th>
+                                <th>Kategorie</th>
+                                <th>Transaktionen</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    @*<td><img style="width:72px;" src="@item.StockPictureUrl" class="img-thumbnail" /></td>*@
+                                    <td>@item.Name</td>
+                                    <td>@item.Preis</td>
+                                    <td>@item.Eigenschaft.Dauer</td>
+                                    <td>@item.Kategorie.Name</td>
+                                    <td>
+                                        <a asp-controller="Kurse" asp-action="Aktualisieren" asp-route-id="@item.ID" class="btn btn-success btn-sm">Aktualisieren</a>
+
+                                        <a asp-controller="Kurse" asp-action="Löschen" asp-route-id="@item.ID" class="btn btn-danger btn-sm">Löschen</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <div class="alert alert-info">
+                        Kein angemeldeter Kurs gefunden!
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
