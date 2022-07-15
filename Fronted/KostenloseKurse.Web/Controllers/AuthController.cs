@@ -42,14 +42,14 @@ namespace KostenloseKurse.Web.Controllers
                 return View();
             }
 
-            return RedirectToAction(nameof(Index), "Home");
+            return RedirectToAction(nameof(Index), "StartSeite");
         }
 
         public async Task<IActionResult> Ausloggen()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             await _identityDienst.WiderrufenAktualisierungsToken();
-            return RedirectToAction(nameof(StartSeiteController.Index), "Home");
+            return RedirectToAction(nameof(StartSeiteController.Index), "StartSeite");
         }
 
     }
