@@ -33,6 +33,7 @@ namespace KostenloseKurse.Web
 
             var dienstApiEinstellungen = Configuration.GetSection("DienstApiEinstellungen").Get<DienstApiEinstellungen>();
 
+            services.AddScoped<RessourcenEigentümerPasswortTokenHandler>();
             services.AddHttpClient<IIdentityDienst, IdentityDienst>();
             services.AddHttpClient<IBenutzerDienst, BenutzerDienst>(options=>
             {

@@ -42,7 +42,7 @@ namespace KostenloseKurse.IdentityServer.Controllers
             return NoContent();
         }
         [HttpGet]
-        public async Task<IActionResult>RufZurBenutzer()
+        public async Task<IActionResult> RufNachBenutzerAuf()
         {
             var benutzerIdClaim = User.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Sub);
             if (benutzerIdClaim == null)  return BadRequest();
