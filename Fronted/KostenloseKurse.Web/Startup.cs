@@ -36,11 +36,14 @@ namespace KostenloseKurse.Web
             services.AddHttpClient<ITokenDienstFürClientAnmeldeInformationen, TokenDienstFürClientAnmeldeInformationen>();
 
             services.AddScoped<RessourcenEigentümerPasswortTokenHandler>();
+            services.AddScoped<TokenHandlerFürClientAnmeldeInformationen>();
             services.AddHttpClient<IIdentityDienst, IdentityDienst>();
+
             services.AddHttpClient<IKatalogDienst, KatalogDienst>(options=>
             {
                 options.BaseAddress = new Uri($"{dienstApiEinstellungen.GatewayBaseUri}/{dienstApiEinstellungen.Katalog.Weg}");
-            });
+            }).AddHttpMessageHandler<TokenHandlerFürClientAnmeldeInformationen>();
+
             services.AddHttpClient<IBenutzerDienst, BenutzerDienst>(options=>
             {
                 options.BaseAddress = new Uri(dienstApiEinstellungen.IdentityBaseUri);
