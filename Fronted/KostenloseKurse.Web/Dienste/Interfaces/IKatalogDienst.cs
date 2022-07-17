@@ -12,7 +12,7 @@ namespace KostenloseKurse.Web.Dienste.Interfaces
 
         Task<List<KursViewModell>> RufAlleKurseNachBenutzerIDAufAsync(string benutzerID);
 
-        Task<KursViewModell> RufNachKursIDAuf(string kurseID);
+        Task<KursViewModell> RufNachKursIDAuf(string kursID);
 
         Task<bool> KursErstellenAsync(KursEingabeErstellen kursEingabeErstellen);
 

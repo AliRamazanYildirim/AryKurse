@@ -26,7 +26,7 @@ namespace KostenloseKurse.Web.Dienste
             //    kursEingabeErstellen.Bild = resultatFotoDienst.Url;
             //}
 
-            var antwort = await _httpClient.PostAsJsonAsync<KursEingabeAktualisieren>("kurse", kursEingabeAktualisieren);
+            var antwort = await _httpClient.PutAsJsonAsync<KursEingabeAktualisieren>("kurse", kursEingabeAktualisieren);
 
             return antwort.IsSuccessStatusCode;
         }
@@ -40,7 +40,7 @@ namespace KostenloseKurse.Web.Dienste
 
         public async Task<bool> KursLöschenAsync(string kursID)
         {
-            var antwort = await _httpClient.DeleteAsync($"kursID");
+            var antwort = await _httpClient.DeleteAsync($"kurse/{kursID}");
 
             return antwort.IsSuccessStatusCode;
         }

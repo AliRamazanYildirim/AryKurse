@@ -15,10 +15,10 @@ namespace KostenloseKurse.Web.Dienste
         private readonly IClientAccessTokenCache _clientAccessTokenCache;
         private readonly HttpClient _httpClient;
 
-        public TokenDienstFürClientAnmeldeInformationen(DienstApiEinstellungen dienstApiEinstellungen,IOptions 
-         <ClientEinstellungen> clientEinstellungen, IClientAccessTokenCache clientAccessTokenCache, HttpClient httpClient)
+        public TokenDienstFürClientAnmeldeInformationen(IOptions<DienstApiEinstellungen> dienstApiEinstellungen,
+            IOptions<ClientEinstellungen> clientEinstellungen, IClientAccessTokenCache clientAccessTokenCache,HttpClient httpClient)
         {
-            _dienstApiEinstellungen = dienstApiEinstellungen;
+            _dienstApiEinstellungen = dienstApiEinstellungen.Value;
             _clientEinstellungen = clientEinstellungen.Value;
             _clientAccessTokenCache = clientAccessTokenCache;
             _httpClient = httpClient;
@@ -26,13 +26,11 @@ namespace KostenloseKurse.Web.Dienste
 
         public async Task<string> BekommeToken()
         {
-            var currentToken = await _clientAccessTokenCache.GetAsync("WebClientToken",default);
-
-            if (currentToken != null)
+            var currentToken = await _clientAccessTokenCache.GetAsync("WebClientToken", default);
+            if(currentToken!=null)
             {
                 return currentToken.AccessToken;
             }
-
             var discovery = await _httpClient.GetDiscoveryDocumentAsync(new DiscoveryDocumentRequest
             {
                 Address = _dienstApiEinstellungen.IdentityBaseUri,
@@ -61,7 +59,7 @@ namespace KostenloseKurse.Web.Dienste
             await _clientAccessTokenCache.SetAsync("WebClientToken", neueToken.AccessToken, neueToken.ExpiresIn,default);
 
             return neueToken.AccessToken;
+        
         }
-    
     }
 }

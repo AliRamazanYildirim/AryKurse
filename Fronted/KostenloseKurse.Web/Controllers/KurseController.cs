@@ -1,5 +1,6 @@
 ﻿using KostenloseKurse.Shared.Dienste;
 using KostenloseKurse.Web.Dienste.Interfaces;
+using KostenloseKurse.Web.Models.Kataloge;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -30,6 +31,68 @@ namespace KostenloseKurse.Web.Controllers
             ViewBag.kategorieListe = new SelectList(kategorien, "ID", "Name");
 
             return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Erstellen(KursEingabeErstellen kursEingabeErstellen)
+        {
+            var kategorien = await _katalogDienst.RufAlleKategorienAufAsync();
+            ViewBag.kategorieListe = new SelectList(kategorien, "ID", "Name");
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            kursEingabeErstellen.BenutzerID = _sharedIdentityDienst.RufBenutzerID;
+
+            await _katalogDienst.KursErstellenAsync(kursEingabeErstellen);
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> Aktualisieren(string id)
+        {
+            var kurs = await _katalogDienst.RufNachKursIDAuf(id);
+            var kategorien = await _katalogDienst.RufAlleKategorienAufAsync();
+
+            if (kurs == null)
+            {
+                //mesaj göster
+                RedirectToAction(nameof(Index));
+            }
+            ViewBag.kategorieListe = new SelectList(kategorien, "ID", "Name", kurs.ID);
+            KursEingabeAktualisieren kursEingabeAktualisieren = new()
+            {
+                ID = kurs.ID,
+                Name = kurs.Name,
+                Bezeichnung = kurs.Bezeichnung,
+                Preis = kurs.Preis,
+                Eigenschaft = kurs.Eigenschaft,
+                KategorieID = kurs.KategorieID,
+                BenutzerID = kurs.BenutzerID,
+                Bild = kurs.Bild
+            };
+
+            return View(kursEingabeAktualisieren);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Aktualisieren(KursEingabeAktualisieren kursEingabeAktualisieren)
+        {
+            var kategorien = await _katalogDienst.RufAlleKategorienAufAsync();
+            ViewBag.kategorieListe = new SelectList(kategorien, "ID", "Name", kursEingabeAktualisieren.ID);
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            await _katalogDienst.KursAktualisierenAsync(kursEingabeAktualisieren);
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> Löschen(string id)
+        {
+            await _katalogDienst.KursLöschenAsync(id);
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }
