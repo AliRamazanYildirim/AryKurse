@@ -2,6 +2,7 @@ using KostenloseKurse.Shared.Dienste;
 using KostenloseKurse.Web.Dienste;
 using KostenloseKurse.Web.Dienste.Interfaces;
 using KostenloseKurse.Web.Handler;
+using KostenloseKurse.Web.Helfer;
 using KostenloseKurse.Web.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
@@ -31,6 +32,7 @@ namespace KostenloseKurse.Web
             services.Configure<DienstApiEinstellungen>(Configuration.GetSection("DienstApiEinstellungen"));
             services.Configure<ClientEinstellungen>(Configuration.GetSection("ClientEinstellungen"));
             services.AddHttpContextAccessor();
+            services.AddSingleton<FotoHelfer>();
             services.AddAccessTokenManagement();
             services.AddScoped<ISharedIdentityDienst, SharedIdentityDienst>();
             var dienstApiEinstellungen = Configuration.GetSection("DienstApiEinstellungen").Get<DienstApiEinstellungen>();

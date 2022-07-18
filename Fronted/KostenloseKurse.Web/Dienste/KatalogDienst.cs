@@ -1,5 +1,6 @@
 ﻿using KostenloseKurse.Shared.Düo;
 using KostenloseKurse.Web.Dienste.Interfaces;
+using KostenloseKurse.Web.Helfer;
 using KostenloseKurse.Web.Models.Kataloge;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -12,11 +13,13 @@ namespace KostenloseKurse.Web.Dienste
     {
         private readonly HttpClient _httpClient;
         private readonly IFotoBestandDienst _fotoBestandDienst;
+        private readonly FotoHelfer _fotoHelfer;
 
-        public KatalogDienst(HttpClient httpClient, IFotoBestandDienst fotoBestandDienst)
+        public KatalogDienst(HttpClient httpClient, IFotoBestandDienst fotoBestandDienst, FotoHelfer fotoHelfer)
         {
             _httpClient = httpClient;
             _fotoBestandDienst = fotoBestandDienst;
+            _fotoHelfer = fotoHelfer;
         }
 
         public async Task<bool> KursAktualisierenAsync(KursEingabeAktualisieren kursEingabeAktualisieren)
@@ -73,9 +76,10 @@ namespace KostenloseKurse.Web.Dienste
             }
 
             var antwortErfolg = await antwort.Content.ReadFromJsonAsync<Antwort<List<KursViewModell>>>();
+
             antwortErfolg.Daten.ForEach(x =>
             {
-                //x.StockPictureUrl = _photoHelper.GetPhotoStockUrl(x.Bild);
+                x.Bild = _fotoHelfer.RufFotoBestandUrlAuf(x.Bild);
             });
             return antwortErfolg.Daten;
         }
@@ -91,6 +95,11 @@ namespace KostenloseKurse.Web.Dienste
             }
 
             var antwortErfolg = await antwort.Content.ReadFromJsonAsync<Antwort<List<KursViewModell>>>();
+
+            antwortErfolg.Daten.ForEach(x =>
+            {
+                x.Bild = _fotoHelfer.RufFotoBestandUrlAuf(x.Bild);
+            });
 
             return antwortErfolg.Daten;
         }
