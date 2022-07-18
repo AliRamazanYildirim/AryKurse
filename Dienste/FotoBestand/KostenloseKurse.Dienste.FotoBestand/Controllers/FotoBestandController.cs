@@ -21,16 +21,16 @@ namespace KostenloseKurse.Dienste.FotoBestand.Controllers
                 var weg = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/bilder", bild.FileName);
                 using var strom = new FileStream(weg, FileMode.Create);
                 await bild.CopyToAsync(strom, cancellationToken);
-                var rückWeg = "bilder/" + bild.FileName;
+                var rückWeg =bild.FileName;
 
                 FotoDüo fotoDüo = new() { Url = rückWeg };
                 return ErstellenAktionResultatBeispiel(Antwort<FotoDüo>.Erfolg(fotoDüo, 200));
             }
             return ErstellenAktionResultatBeispiel(Antwort<FotoDüo>.Fehlschlag("Foto ist leer", 400));
         }
-        public IActionResult FotoLöschen(string fotoUrl)
+        public IActionResult FotoLöschen(string bildUrl)
         {
-            var weg = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/bilder", fotoUrl);
+            var weg = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/bilder", bildUrl);
             if (!System.IO.File.Exists(weg))
             {
                 return ErstellenAktionResultatBeispiel(Antwort<KeinInhaltDüo>.Fehlschlag("Foto wurde nicht gefunden", 404));

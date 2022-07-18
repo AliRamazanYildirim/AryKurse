@@ -45,6 +45,11 @@ namespace KostenloseKurse.Web
                 options.BaseAddress = new Uri($"{dienstApiEinstellungen.GatewayBaseUri}/{dienstApiEinstellungen.Katalog.Weg}");
             }).AddHttpMessageHandler<TokenHandlerFürClientAnmeldeInformationen>();
 
+            services.AddHttpClient<IFotoBestandDienst, FotoBestandDienst>(options =>
+            {
+                options.BaseAddress = new Uri($"{dienstApiEinstellungen.GatewayBaseUri}/{dienstApiEinstellungen.FotoBestand.Weg}");
+            }).AddHttpMessageHandler<TokenHandlerFürClientAnmeldeInformationen>();
+
             services.AddHttpClient<IBenutzerDienst, BenutzerDienst>(options=>
             {
                 options.BaseAddress = new Uri(dienstApiEinstellungen.IdentityBaseUri);

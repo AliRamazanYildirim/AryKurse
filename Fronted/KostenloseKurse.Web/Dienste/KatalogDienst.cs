@@ -11,21 +11,17 @@ namespace KostenloseKurse.Web.Dienste
     public class KatalogDienst : IKatalogDienst
     {
         private readonly HttpClient _httpClient;
+        private readonly IFotoBestandDienst _fotoBestandDienst;
 
-        public KatalogDienst(HttpClient httpClient)
+        public KatalogDienst(HttpClient httpClient, IFotoBestandDienst fotoBestandDienst)
         {
             _httpClient = httpClient;
+            _fotoBestandDienst = fotoBestandDienst;
         }
 
         public async Task<bool> KursAktualisierenAsync(KursEingabeAktualisieren kursEingabeAktualisieren)
         {
-            //var resultatFotoDienst = await _photoStockService.UploadPhoto(kursEingabeErstellen.PhotoFormFile);
-
-            //if (resultatFotoDienst != null)
-            //{
-            //    kursEingabeErstellen.Bild = resultatFotoDienst.Url;
-            //}
-
+            
             var antwort = await _httpClient.PutAsJsonAsync<KursEingabeAktualisieren>("kurse", kursEingabeAktualisieren);
 
             return antwort.IsSuccessStatusCode;
@@ -33,6 +29,13 @@ namespace KostenloseKurse.Web.Dienste
 
         public async Task<bool> KursErstellenAsync(KursEingabeErstellen kursEingabeErstellen)
         {
+            var resultatFotoDienst = await _fotoBestandDienst.FotoHochladen(kursEingabeErstellen.PhotoFormFile);
+
+            if (resultatFotoDienst != null)
+            {
+                kursEingabeErstellen.Bild = resultatFotoDienst.Url;
+            }
+
             var antwort = await _httpClient.PostAsJsonAsync<KursEingabeErstellen>("kurse", kursEingabeErstellen);
 
             return antwort.IsSuccessStatusCode;
