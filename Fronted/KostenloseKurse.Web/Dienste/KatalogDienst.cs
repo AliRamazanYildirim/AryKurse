@@ -24,7 +24,13 @@ namespace KostenloseKurse.Web.Dienste
 
         public async Task<bool> KursAktualisierenAsync(KursEingabeAktualisieren kursEingabeAktualisieren)
         {
-            
+            var resultatFotoDienst = await _fotoBestandDienst.FotoHochladen(kursEingabeAktualisieren.PhotoFormFile);
+
+            if (resultatFotoDienst != null)
+            {
+                await _fotoBestandDienst.FotoLöschen(kursEingabeAktualisieren.Bild);
+                kursEingabeAktualisieren.Bild = resultatFotoDienst.Url;
+            }
             var antwort = await _httpClient.PutAsJsonAsync<KursEingabeAktualisieren>("kurse", kursEingabeAktualisieren);
 
             return antwort.IsSuccessStatusCode;

@@ -14,7 +14,7 @@
                     <div asp-validation-summary="ModelOnly"></div>
                     <input type="hidden" asp-for="ID" />
                     <input type="hidden" asp-for="BenutzerID" />
-                    @*<input type="hidden" asp-for="Bild" />*@
+                    <input type="hidden" asp-for="Bild" />
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label" asp-for="KategorieID"></label>
                         <select asp-for="KategorieID" class="form-control" asp-items="@ViewBag.kategorieListe">
@@ -47,12 +47,12 @@
                         <span class="text-danger" asp-validation-for="Eigenschaft.Dauer"></span>
                     </div>
 
-                    @*<div class="mb-3">
+                    <div class="mb-3">
 
                         <label class="form-label" asp-for="PhotoFormFile"></label>
 
                         <input type="file" asp-for="PhotoFormFile" class="form-control" />
-                    </div>*@
+                    </div>
 
                     <button type="submit" class="btn btn-primary">Kurs Aktualisieren</button>
                 </form>
