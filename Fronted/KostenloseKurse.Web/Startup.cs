@@ -32,8 +32,8 @@ namespace KostenloseKurse.Web
             services.Configure<DienstApiEinstellungen>(Configuration.GetSection("DienstApiEinstellungen"));
             services.Configure<ClientEinstellungen>(Configuration.GetSection("ClientEinstellungen"));
             services.AddHttpContextAccessor();
-            services.AddSingleton<FotoHelfer>();
             services.AddAccessTokenManagement();
+            services.AddSingleton<FotoHelfer>();
             services.AddScoped<ISharedIdentityDienst, SharedIdentityDienst>();
             var dienstApiEinstellungen = Configuration.GetSection("DienstApiEinstellungen").Get<DienstApiEinstellungen>();
             services.AddHttpClient<ITokenDienstFürClientAnmeldeInformationen, TokenDienstFürClientAnmeldeInformationen>();

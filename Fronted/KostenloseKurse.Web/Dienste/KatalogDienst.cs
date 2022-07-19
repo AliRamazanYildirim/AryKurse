@@ -85,7 +85,7 @@ namespace KostenloseKurse.Web.Dienste
 
             antwortErfolg.Daten.ForEach(x =>
             {
-                x.Bild = _fotoHelfer.RufFotoBestandUrlAuf(x.Bild);
+                x.FotoBestandUrl = _fotoHelfer.RufFotoBestandUrlAuf(x.Bild);
             });
             return antwortErfolg.Daten;
         }
@@ -104,7 +104,7 @@ namespace KostenloseKurse.Web.Dienste
 
             antwortErfolg.Daten.ForEach(x =>
             {
-                x.Bild = _fotoHelfer.RufFotoBestandUrlAuf(x.Bild);
+                x.FotoBestandUrl = _fotoHelfer.RufFotoBestandUrlAuf(x.Bild);
             });
 
             return antwortErfolg.Daten;
@@ -121,6 +121,7 @@ namespace KostenloseKurse.Web.Dienste
             }
 
             var antwortErfolg = await antwort.Content.ReadFromJsonAsync<Antwort<KursViewModell>>();
+            antwortErfolg.Daten.FotoBestandUrl = _fotoHelfer.RufFotoBestandUrlAuf(antwortErfolg.Daten.Bild);
 
             return antwortErfolg.Daten;
         }

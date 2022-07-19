@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewData["Title"] = "Einzelheit";
+}
+
+@model KursViewModell
+
+<div class="row">
+    <div class="col-md-9">
+
+        <div class="card">
+            <img src="@Model.FotoBestandUrl" class="card-img-top" />
+            <div class="card-body">
+                <h5 class="card-title">@Model.Name</h5>
+                <div class="badge bg-primary">Kategorie : @Model.Kategorie.Name</div>
+                <p class="card-text"> @Model.Bezeichnung</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Preis : @Model.Preis €</h4>
+                <div class="d-grid">
+                    <a asp-controller="Korb" asp-action="AddBasketItem" asp-route-courseId="@Model.ID" class="btn btn-success">Zum Warenkorb Hinzufügen</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

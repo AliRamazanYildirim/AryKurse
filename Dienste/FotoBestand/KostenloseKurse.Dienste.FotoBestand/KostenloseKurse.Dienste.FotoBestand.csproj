@@ -13,4 +13,8 @@
     <ProjectReference Include="..\..\..\Shared\KostenloseKurse.Shared\KostenloseKurse.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\bilder\" />
+  </ItemGroup>
+
 </Project>
