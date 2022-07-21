@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+@model KorbViewModell
+
+<div class="row">
+
+    <div class="col-md-8 offset-md-2">
+
+        <div class="card">
+            <div class="card-body">
+
+                <h5 class="card-title">Korb</h5>
+
+                @if (Model != null && Model.KorbGegenstande.Any())
+                {
+                    <table class="table table-striped">
+
+                        <tr>
+                            <th>Kursname</th>
+                            <th>Kurspreis</th>
+                            <th>Transaktionen</th>
+                        </tr>
+
+                        @foreach (var item in Model.KorbGegenstande)
+                        {
+                            <tr>
+                                <td>@item.KursName</td>
+                                <td>
+                                    @item.RufAktuellenPreisAuf € @(Model.GabRabatt? $"(%{Model.Diskontsatz.Value} wurde angewendet)" : "")
+                                </td>
+                                <td>
+                                    <a class="btn btn-danger" asp-controller="Korb" asp-action="KorbGegenstandEntfernen" asp-route-kursID="@item.KursID">Löschen</a>
+                                </td>
+                            </tr>
+                        }
+
+                        @if (Model.GabRabatt)
+                        {
+
+                            <tr>
+                                <td>Diskontsatz</td>
+                                <th colspan="2"> % @Model.Diskontsatz.Value</th>
+                            </tr>
+
+                        }
+
+                        <tr>
+                            <td>@(Model.GabRabatt ? "Herabgesetzter Preis" : "Gesamtpreis")</td>
+                            <th colspan="2">@Model.Gesamtpreis €</th>
+                        </tr>
+                    </table>
+
+                    
+                    
+                }
+                else
+                {
+                    <div class="alert alert-info">Korb ist leer!</div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

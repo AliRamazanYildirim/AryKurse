@@ -21,7 +21,8 @@ namespace KostenloseKurse.Dienste.FotoBestand.Controllers
                 var weg = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/bilder", bild.FileName);
                 using var strom = new FileStream(weg, FileMode.Create);
                 await bild.CopyToAsync(strom, cancellationToken);
-                var rückWeg =bild.FileName;
+
+                var rückWeg = bild.FileName;
 
                 FotoDüo fotoDüo = new() { Url = rückWeg };
                 return ErstellenAktionResultatBeispiel(Antwort<FotoDüo>.Erfolg(fotoDüo, 200));

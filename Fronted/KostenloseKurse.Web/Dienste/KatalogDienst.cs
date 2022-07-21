@@ -93,7 +93,7 @@ namespace KostenloseKurse.Web.Dienste
         public async Task<List<KursViewModell>> RufAlleKurseNachBenutzerIDAufAsync(string benutzerID)
         {
             //[controller]/ RufAlleZurBenutzerID /{ benutzerID}
-            var antwort = await _httpClient.GetAsync($"kurse/RufAlleZurBenutzerID/{benutzerID}");
+            var antwort = await _httpClient.GetAsync($"kurse/RufNachBenutzerIDAuf/{benutzerID}");
 
             if (!antwort.IsSuccessStatusCode)
             {

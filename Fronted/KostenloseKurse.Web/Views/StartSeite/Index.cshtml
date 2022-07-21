@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "StartSeite";
+    ViewData["Title"] = "Start Seite";
     var count=0;
 }
 @model List<KursViewModell>
@@ -22,7 +22,7 @@
                 <img src="@item.FotoBestandUrl" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">@item.Name</h5>
-                    <div class="badge bg-primary">Kategorie : @item.Kategorie.Name</div>
+                    <div class="badge text-bg-warning">Kategorie : @item.Kategorie.Name</div>
                     <p class="card-text">@item.KurzeBezeichnung</p>
                     <h4 class="text-primary">@item.Preis €</h4>
 

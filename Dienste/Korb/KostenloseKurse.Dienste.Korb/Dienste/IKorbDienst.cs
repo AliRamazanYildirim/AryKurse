@@ -8,6 +8,6 @@ namespace KostenloseKurse.Dienste.Korb.Dienste
     {
         Task<Antwort<KorbDüo>> RufKorb(string benutzerID);
         Task<Antwort<bool>> SpeichernOderAktualisieren(KorbDüo korbDüo);
-        Task<Antwort<bool>> Löschen(string benutzerID);
+        Task<Antwort<bool>> KorbLöschen(string benutzerID);
     }
 }

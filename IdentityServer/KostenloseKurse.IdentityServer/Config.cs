@@ -30,7 +30,7 @@ namespace KostenloseKurse.IdentityServer
                     new IdentityResources.OpenId(),//OpenIdClaim
                     new IdentityResources.Email(),//EmailClaim
                     new IdentityResources.Profile(),//ProfileClaim
-                    new IdentityResource(){Name="rollen",DisplayName="Rolle",Description="Benutzer-Rolle",UserClaims=new[]{ "Benutzeransprüche" } }
+                    new IdentityResource(){Name="rollen",DisplayName="Rolle",Description="Benutzer-Rolle",UserClaims=new[]{ "Rolle" } }
                    };
 
         public static IEnumerable<ApiScope> ApiScopes =>

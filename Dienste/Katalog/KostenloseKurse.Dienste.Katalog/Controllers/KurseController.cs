@@ -18,44 +18,44 @@ namespace KostenloseKurse.Dienste.Katalog.Controllers
             _kursDienst = kursDienst;
         }
         [HttpGet]
-        public async Task<IActionResult> RufAlleDaten()
+        public async Task<IActionResult> RufAlleDatenAuf()
         {
-            var antwort = await _kursDienst.RufAlleDatenAsync();
+            var antwort = await _kursDienst.RufAlleDatenAufAsync();
             return ErstellenAktionResultatBeispiel(antwort);
         }
 
         [HttpGet("{ID}")]
-        public async Task<IActionResult>RufZurID(string ID)
+        public async Task<IActionResult> RufNachIDAuf(string ID)
         {
-            var antwort=await _kursDienst.RufZurIDAsync(ID);
+            var antwort=await _kursDienst.RufNachIDAufAsync(ID);
             return ErstellenAktionResultatBeispiel(antwort);
         }
         [HttpGet]
-        [Route("/api/[controller]/RufAlleZurBenutzerID/{benutzerID}")]
-        public async Task<IActionResult> RufZurBenutzerID(string benutzerID)
+        [Route("/api/[controller]/RufNachBenutzerIDAuf/{benutzerID}")]
+        public async Task<IActionResult> RufNachBenutzerIDAuf(string benutzerID)
         {
-            var antwort = await _kursDienst.RufZurBenutzerIDAsync(benutzerID);
+            var antwort = await _kursDienst.RufNachBenutzerIDAufAsync(benutzerID);
             return ErstellenAktionResultatBeispiel(antwort);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Erstellen(KursErstellenDüo kursErstellenDüo)
+        public async Task<IActionResult> KursErstellen(KursErstellenDüo kursErstellenDüo)
         {
-            var antwort = await _kursDienst.ErstellenAsync(kursErstellenDüo);
+            var antwort = await _kursDienst.KursErstellenAsync(kursErstellenDüo);
             return ErstellenAktionResultatBeispiel(antwort);
         }
 
         [HttpPut]
-        public async Task<IActionResult> Aktualisieren(KursAktualisierenDüo kursAktualisierenDüo)
+        public async Task<IActionResult> KursAktualisieren(KursAktualisierenDüo kursAktualisierenDüo)
         {
-            var antwort = await _kursDienst.AktualisierenAsync(kursAktualisierenDüo);
+            var antwort = await _kursDienst.KursAktualisierenAsync(kursAktualisierenDüo);
             return ErstellenAktionResultatBeispiel(antwort);
         }
 
         [HttpDelete("{ID}")]
-        public async Task<IActionResult> Löschen(string ID)
+        public async Task<IActionResult> KursLöschen(string ID)
         {
-            var antwort = await _kursDienst.LöschenAsync(ID);
+            var antwort = await _kursDienst.KursLöschenAsync(ID);
             return ErstellenAktionResultatBeispiel(antwort);
         }
     }

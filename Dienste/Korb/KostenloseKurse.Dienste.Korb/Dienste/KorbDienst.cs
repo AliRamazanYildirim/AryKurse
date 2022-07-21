@@ -15,7 +15,7 @@ namespace KostenloseKurse.Dienste.Korb.Dienste
             _redisDienst = redisDienst;
         }
 
-        public async Task<Antwort<bool>> Löschen(string benutzerID)
+        public async Task<Antwort<bool>> KorbLöschen(string benutzerID)
         {
             var status = await _redisDienst.RufDB().KeyDeleteAsync(benutzerID);
             return status ? Antwort<bool>.Erfolg(204) : Antwort<bool>.Fehlschlag("Der Korb wurde nicht gefunden!", 404);

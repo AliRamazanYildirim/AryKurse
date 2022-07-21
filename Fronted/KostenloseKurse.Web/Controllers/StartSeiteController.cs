@@ -28,9 +28,9 @@ namespace KostenloseKurse.Web.Controllers
             return View(await _katalogDienst.RufAlleKurseAufAsync());
         }
 
-        public async Task<IActionResult> Einzelheit(string id)
+        public async Task<IActionResult> Einzelheit(string ID)
         {
-            return View(await _katalogDienst.RufNachKursIDAuf(id));
+            return View(await _katalogDienst.RufNachKursIDAuf(ID));
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

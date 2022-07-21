@@ -29,13 +29,14 @@ namespace KostenloseKurse.Dienste.Korb.Controllers
         [HttpPost]
         public async Task<IActionResult>SpeichernOderAktualisieren(KorbDüo korbDüo)
         {
+            korbDüo.BenuzterID = _sharedIdentityDienst.RufBenutzerID;
             var antwort = await _korbDienst.SpeichernOderAktualisieren(korbDüo);
             return ErstellenAktionResultatBeispiel(antwort);
         }
         [HttpDelete]
-        public async Task<IActionResult>LöschenKorb()
+        public async Task<IActionResult>KorbLöschen()
         {
-            return ErstellenAktionResultatBeispiel(await _korbDienst.Löschen(_sharedIdentityDienst.RufBenutzerID));
+            return ErstellenAktionResultatBeispiel(await _korbDienst.KorbLöschen(_sharedIdentityDienst.RufBenutzerID));
         }
 
     }

@@ -12,7 +12,7 @@
             <img src="@Model.FotoBestandUrl" class="card-img-top" />
             <div class="card-body">
                 <h5 class="card-title">@Model.Name</h5>
-                <div class="badge bg-primary">Kategorie : @Model.Kategorie.Name</div>
+                <div class="badge text-bg-warning">Kategorie : @Model.Kategorie.Name</div>
                 <p class="card-text"> @Model.Bezeichnung</p>
             </div>
         </div>
@@ -23,7 +23,7 @@
             <div class="card-body">
                 <h4 class="card-title">Preis : @Model.Preis €</h4>
                 <div class="d-grid">
-                    <a asp-controller="Korb" asp-action="AddBasketItem" asp-route-courseId="@Model.ID" class="btn btn-success">Zum Warenkorb Hinzufügen</a>
+                    <a asp-controller="Korb" asp-action="KorbGegenstandErstellen" asp-route-kursID="@Model.ID" class="btn btn-success">Zum Warenkorb Hinzufügen</a>
                 </div>
             </div>
         </div>

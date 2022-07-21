@@ -26,7 +26,7 @@ namespace KostenloseKurse.Dienste.Katalog.Dienste
             _mapper = mapper;
         }
 
-        public async Task<Antwort<List<KursDüo>>> RufAlleDatenAsync()
+        public async Task<Antwort<List<KursDüo>>> RufAlleDatenAufAsync()
         {
             var kurse = await _kursCollection.Find(kurs => true).ToListAsync();
           
@@ -46,7 +46,7 @@ namespace KostenloseKurse.Dienste.Katalog.Dienste
 
         }
 
-        public async Task<Antwort<KursDüo>> RufZurIDAsync(string ID)
+        public async Task<Antwort<KursDüo>> RufNachIDAufAsync(string ID)
         {
             var kurs = await _kursCollection.Find<Kurs>(x => x.ID == ID).FirstOrDefaultAsync();
             if (kurs == null)
@@ -57,7 +57,7 @@ namespace KostenloseKurse.Dienste.Katalog.Dienste
             return Antwort<KursDüo>.Erfolg(_mapper.Map<KursDüo>(kurs), 200);
 
         }
-        public async Task<Antwort<List<KursDüo>>> RufZurBenutzerIDAsync(string benutzerID)
+        public async Task<Antwort<List<KursDüo>>> RufNachBenutzerIDAufAsync(string benutzerID)
         {
             var kurse = await _kursCollection.Find<Kurs>(x => x.BenutzerID == benutzerID).ToListAsync();
             if (kurse.Any())
@@ -73,14 +73,14 @@ namespace KostenloseKurse.Dienste.Katalog.Dienste
             }
             return Antwort<List<KursDüo>>.Erfolg(_mapper.Map<List<KursDüo>>(kurse), 200);
         }
-        public async Task<Antwort<KursDüo>> ErstellenAsync(KursErstellenDüo kursErstellenDüo)
+        public async Task<Antwort<KursDüo>> KursErstellenAsync(KursErstellenDüo kursErstellenDüo)
         {
             var neuerKurs=_mapper.Map<Kurs>(kursErstellenDüo);
             neuerKurs.Erstellungsdatum = DateTime.Now;
             await _kursCollection.InsertOneAsync(neuerKurs);
             return Antwort<KursDüo>.Erfolg(_mapper.Map<KursDüo>(neuerKurs), 200);
         }
-        public async Task<Antwort<KeinInhaltDüo>>AktualisierenAsync(KursAktualisierenDüo kursAktualisierenDüo)
+        public async Task<Antwort<KeinInhaltDüo>>KursAktualisierenAsync(KursAktualisierenDüo kursAktualisierenDüo)
         {
             var aktualisierenKurs = _mapper.Map<Kurs>(kursAktualisierenDüo);
             var resultat = await _kursCollection.FindOneAndReplaceAsync(x => x.ID == kursAktualisierenDüo.ID, aktualisierenKurs);
@@ -90,7 +90,7 @@ namespace KostenloseKurse.Dienste.Katalog.Dienste
             }
             return Antwort<KeinInhaltDüo>.Erfolg(204);
         }
-        public async Task<Antwort<KeinInhaltDüo>> LöschenAsync(string ID)
+        public async Task<Antwort<KeinInhaltDüo>> KursLöschenAsync(string ID)
         {
             var resultat = await _kursCollection.DeleteOneAsync(x => x.ID==ID);
             if(resultat.DeletedCount>0)

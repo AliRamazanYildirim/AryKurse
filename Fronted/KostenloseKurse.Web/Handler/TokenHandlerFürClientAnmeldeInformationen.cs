@@ -17,7 +17,8 @@ namespace KostenloseKurse.Web.Handler
         }
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
-            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", await _dienstFürClientAnmeldeInformationen.BekommeToken());
+            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", 
+                await _dienstFürClientAnmeldeInformationen.BekommeToken());
 
             var antwort = await base.SendAsync(request, cancellationToken);
 

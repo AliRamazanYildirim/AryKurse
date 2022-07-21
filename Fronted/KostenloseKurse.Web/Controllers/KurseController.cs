@@ -48,14 +48,14 @@ namespace KostenloseKurse.Web.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public async Task<IActionResult> Aktualisieren(string id)
+        public async Task<IActionResult> Aktualisieren(string ID)
         {
-            var kurs = await _katalogDienst.RufNachKursIDAuf(id);
+            var kurs = await _katalogDienst.RufNachKursIDAuf(ID);
             var kategorien = await _katalogDienst.RufAlleKategorienAufAsync();
 
             if (kurs == null)
             {
-                //mesaj göster
+                //Nachricht anzeigen
                 RedirectToAction(nameof(Index));
             }
             ViewBag.kategorieListe = new SelectList(kategorien, "ID", "Name", kurs.ID);
@@ -88,9 +88,9 @@ namespace KostenloseKurse.Web.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public async Task<IActionResult> Löschen(string id)
+        public async Task<IActionResult> Löschen(string ID)
         {
-            await _katalogDienst.KursLöschenAsync(id);
+            await _katalogDienst.KursLöschenAsync(ID);
 
             return RedirectToAction(nameof(Index));
         }
