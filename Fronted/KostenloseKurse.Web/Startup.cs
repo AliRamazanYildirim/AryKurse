@@ -1,3 +1,4 @@
+using FluentValidation.AspNetCore;
 using KostenloseKurse.Shared.Dienste;
 using KostenloseKurse.Web.Dienste;
 using KostenloseKurse.Web.Dienste.Interfaces;
@@ -5,6 +6,7 @@ using KostenloseKurse.Web.Erweiterungen;
 using KostenloseKurse.Web.Handler;
 using KostenloseKurse.Web.Helfer;
 using KostenloseKurse.Web.Models;
+using KostenloseKurse.Web.Validierer;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -51,7 +53,8 @@ namespace KostenloseKurse.Web
                     options.SlidingExpiration = true;
                     options.Cookie.Name = "arywebcookie";
                 });
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddFluentValidation(fluent=>
+            fluent.RegisterValidatorsFromAssemblyContaining<KursEingabeErstellenValidierer>());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

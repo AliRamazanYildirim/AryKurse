@@ -13,7 +13,7 @@ namespace KostenloseKurse.Web.Models.Korb
         public string BenuzterID { get; set; }
         public string Rabattcode { get; set; }
         public int? Diskontsatz { get; set; }
-        private List<KorbGegenstandViewModell> _korbGegenstande { get; set; }
+        private List<KorbGegenstandViewModell> _korbGegenstande;
 
         public List<KorbGegenstandViewModell> KorbGegenstande
         {
