@@ -37,7 +37,7 @@ namespace KostenloseKurse.Dienste.Rabatt.Controllers
         }
 
         [HttpGet]
-        [Route("/api/[controller]/[action]/{code}")]
+        [Route("/api/[controller]/[action]/{Code}")]
         public async Task<IActionResult> RufenNachCodeAuf(string Code)
 
         {

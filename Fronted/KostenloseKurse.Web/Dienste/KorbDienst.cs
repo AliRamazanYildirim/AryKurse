@@ -11,10 +11,12 @@ namespace KostenloseKurse.Web.Dienste
     public class KorbDienst : IKorbDienst
     {
         private readonly HttpClient _httpClient;
+        private readonly IRabattDienst _rabattDienst;
 
-        public KorbDienst(HttpClient httpClient)
+        public KorbDienst(HttpClient httpClient, IRabattDienst rabattDienst)
         {
             _httpClient = httpClient;
+            _rabattDienst = rabattDienst;
         }
 
         public async Task<bool> KorbGegenstandEntfernen(string kursID)
@@ -77,14 +79,38 @@ namespace KostenloseKurse.Web.Dienste
             return resultat.IsSuccessStatusCode;
         }
 
-        public Task<bool> RabattAnwenden(string rabattCode)
+        public async Task<bool> RabattAnwenden(string rabattCode)
         {
-            throw new System.NotImplementedException();
+            await AngewandterRabattStornieren();
+
+            var korb = await RufKorb();
+            if (korb == null)
+            {
+                return false;
+            }
+
+            var gabRabatt = await _rabattDienst.RufRabattAuf(rabattCode);
+            if (gabRabatt == null)
+            {
+                return false;
+            }
+
+            korb.AngewandterRabatt(gabRabatt.Code, gabRabatt.Rate);
+            await SpeichernOderAktualisieren(korb);
+            return true;
         }
 
-        public Task<bool> RabattStornieren()
+        public async Task<bool> AngewandterRabattStornieren()
         {
-            throw new System.NotImplementedException();
+            var korb = await RufKorb();
+            if(korb==null || korb.RabattCode == null)
+            {
+                return false;
+            }
+
+            korb.RabattStornieren();
+            await SpeichernOderAktualisieren(korb);
+            return true;
         }
 
         public async Task<KorbViewModell> RufKorb()

@@ -29,7 +29,7 @@
                             <tr>
                                 <td>@item.KursName</td>
                                 <td>
-                                    @item.RufAktuellenPreisAuf € @(Model.GabRabatt? $"(%{Model.Diskontsatz.Value} wurde angewendet)" : "")
+                                    @item.RufAktuellenPreisAuf € @(Model.GabRabatt? $"(%{Model.DiskontSatz.Value} wurde angewendet)" : "")
                                 </td>
                                 <td>
                                     <a class="btn btn-danger" asp-controller="Korb" asp-action="KorbGegenstandEntfernen" asp-route-kursID="@item.KursID">Löschen</a>
@@ -42,7 +42,7 @@
 
                             <tr>
                                 <td>Diskontsatz</td>
-                                <th colspan="2"> % @Model.Diskontsatz.Value</th>
+                                <th colspan="2"> % @Model.DiskontSatz.Value</th>
                             </tr>
 
                         }
@@ -53,7 +53,32 @@
                         </tr>
                     </table>
 
-                    
+                     <form asp-controller="Korb" asp-action="RabattAnwenden">
+                        @if (Model.GabRabatt)
+                        {
+                            <div class="alert alert-success">
+                                "@Model.RabattCode"indirim kodu uygulandı
+                                <a asp-controller="Korb" asp-action="AngewandterRabattStornieren"> (Stornieren)</a>
+                            </div>
+
+                        }
+
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" name="RabattEingabeAnwenden.Code">
+                            <button class="btn btn-outline-secondary" type="submit">Anwenden</button>
+                        </div>
+
+                        @if (TempData["rabattStatus"] != null && (bool)TempData["rabattStatus"] == false)
+                        {
+                            <div class="text-danger">Rabattcode ist ungültig</div>
+                        }
+                        @if (TempData["rabattFehler"] != null)
+                        {
+                            <div class="text-danger">@TempData["rabattFehler"]</div>
+                        }
+                    </form>
+                  @*  <a class="btn btn-success" asp-controller="Bestellung" asp-action="Ausloggen">Zahlungsinformationen</a>
+                    <a class="btn btn-warning" asp-controller="StartSeite" asp-action="Index">Stöbern Sie weiter in den Kursen.</a>*@
                     
                 }
                 else

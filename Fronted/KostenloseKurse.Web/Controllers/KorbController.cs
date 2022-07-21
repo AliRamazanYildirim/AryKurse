@@ -1,7 +1,9 @@
 ﻿using KostenloseKurse.Web.Dienste.Interfaces;
 using KostenloseKurse.Web.Models.Korb;
+using KostenloseKurse.Web.Models.Rabatt;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace KostenloseKurse.Web.Controllers
@@ -36,6 +38,24 @@ namespace KostenloseKurse.Web.Controllers
         {
             var resultat = await _korbDienst.KorbGegenstandEntfernen(kursID);
 
+            return RedirectToAction(nameof(Index));
+        }
+        public async Task<IActionResult> RabattAnwenden(RabattEingabeAnwenden rabattEingabeAnwenden)
+        {
+            if (!ModelState.IsValid)
+            {
+                TempData["rabattFehler"] = ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).First();
+                return RedirectToAction(nameof(Index));
+            }
+            var rabattStatus = await _korbDienst.RabattAnwenden(rabattEingabeAnwenden.Code);
+
+            TempData["rabattStatus"] = rabattStatus;
+            return RedirectToAction(nameof(Index));
+
+        }
+        public async Task<IActionResult> AngewandterRabattStornieren()
+        {
+            await _korbDienst.AngewandterRabattStornieren();
             return RedirectToAction(nameof(Index));
         }
 

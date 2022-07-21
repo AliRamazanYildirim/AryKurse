@@ -17,6 +17,6 @@ namespace KostenloseKurse.Web.Dienste.Interfaces
 
         Task<bool> RabattAnwenden(string rabattCode);
 
-        Task<bool> RabattStornieren();
+        Task<bool> AngewandterRabattStornieren();
     }
 }
