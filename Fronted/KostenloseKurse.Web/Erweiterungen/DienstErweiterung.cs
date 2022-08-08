@@ -45,6 +45,18 @@ namespace KostenloseKurse.Web.Erweiterungen
                 options.BaseAddress = new Uri($"{dienstApiEinstellungen.GatewayBaseUri}/{dienstApiEinstellungen.Rabatt.Weg}");
 
             }).AddHttpMessageHandler<RessourcenEigentümerPasswortTokenHandler>();
+
+            services.AddHttpClient<IZahlungDienst, ZahlungDienst>(options =>
+            {
+                options.BaseAddress = new Uri($"{dienstApiEinstellungen.GatewayBaseUri}/{dienstApiEinstellungen.FakeZahlung.Weg}");
+
+            }).AddHttpMessageHandler<RessourcenEigentümerPasswortTokenHandler>();
+
+            services.AddHttpClient<IBestellungDienst, BestellungDienst>(options =>
+            {
+                options.BaseAddress = new Uri($"{dienstApiEinstellungen.GatewayBaseUri}/{dienstApiEinstellungen.Bestellung.Weg}");
+
+            }).AddHttpMessageHandler<RessourcenEigentümerPasswortTokenHandler>();
         }
 
     }
