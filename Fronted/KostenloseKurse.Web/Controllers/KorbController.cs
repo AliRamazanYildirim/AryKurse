@@ -28,7 +28,8 @@ namespace KostenloseKurse.Web.Controllers
         {
             var kurs = await _katalogDienst.RufNachKursIDAuf(kursID);
 
-            var korbGegenstand = new KorbGegenstandViewModell { KursID = kurs.ID, KursName = kurs.Name, Preis = kurs.Preis };
+            var korbGegenstand = new KorbGegenstandViewModell { KursID = kurs.ID, KursName = kurs.Name,
+                Preis = kurs.Preis };
 
             await _korbDienst.KorbGegenstandErstellen(korbGegenstand);
 

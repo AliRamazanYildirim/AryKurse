@@ -7,8 +7,11 @@ namespace KostenloseKurse.Dienste.Korb.Düo
     {
         public string BenuzterID { get; set; }
         public string RabattCode { get; set; }
-        public int? DiskontSatz { get; set; }
+        public int? RabattRate { get; set; }
         public List<KorbGegenstandDüo> KorbGegenstande { get; set; }
-        public decimal Gesamtpreis { get => KorbGegenstande.Sum(x => x.Preis * x.Menge); }
+        public decimal Gesamtpreis 
+        { 
+            get => KorbGegenstande.Sum(x => x.Preis * x.Menge);
+        }
     }
 }

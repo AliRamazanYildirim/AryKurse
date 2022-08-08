@@ -12,7 +12,8 @@ namespace KostenloseKurse.Web.Models.Korb
         }
         public string BenuzterID { get; set; }
         public string RabattCode { get; set; }
-        public int? DiskontSatz { get; set; }
+        public int? RabattRate { get; set; }
+
         private List<KorbGegenstandViewModell> _korbGegenstande;
 
         public List<KorbGegenstandViewModell> KorbGegenstande
@@ -24,8 +25,8 @@ namespace KostenloseKurse.Web.Models.Korb
                     //Beispielkurspreis 50 € Rabatt 10%
                     _korbGegenstande.ForEach(x =>
                     {
-                        var rabattPreis = x.Preis * ((decimal)DiskontSatz.Value / 100);
-                        x.AngewandterRabatt(Math.Round(x.Preis - rabattPreis, 2));//90.00 €
+                        var rabattPreis = x.Preis * ((decimal)RabattRate.Value / 100);
+                        x.AngewandterRabatt(Math.Round(x.Preis - rabattPreis, 2));//45.00 €
                     });
                 }
                 return _korbGegenstande;
@@ -38,22 +39,24 @@ namespace KostenloseKurse.Web.Models.Korb
         public decimal Gesamtpreis 
         { 
             get => _korbGegenstande.Sum(x => x.RufAktuellenPreisAuf);
+
         }
+        
         public bool GabRabatt
         {
-            get => !string.IsNullOrEmpty(RabattCode) && DiskontSatz.HasValue;
+            get => !string.IsNullOrEmpty(RabattCode) && RabattRate.HasValue;
         }
 
         public void RabattStornieren()
         {
             RabattCode = null;
-            DiskontSatz = null;
+            RabattRate = null;
         }
 
-        public void AngewandterRabatt(string code, int satz)
+        public void AngewandterRabatt(string Code, int Rate)
         {
-            RabattCode = code;
-            DiskontSatz = satz;
+            RabattCode = Code;
+            RabattRate = Rate;
         }
     }
 }

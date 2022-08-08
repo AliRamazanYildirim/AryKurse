@@ -29,7 +29,7 @@
                             <tr>
                                 <td>@item.KursName</td>
                                 <td>
-                                    @item.RufAktuellenPreisAuf € @(Model.GabRabatt? $"(%{Model.DiskontSatz.Value} wurde angewendet)" : "")
+                                    @item.RufAktuellenPreisAuf € @(Model.GabRabatt? $"(%{Model.RabattRate.Value} wurde angewendet)" : "")
                                 </td>
                                 <td>
                                     <a class="btn btn-danger" asp-controller="Korb" asp-action="KorbGegenstandEntfernen" asp-route-kursID="@item.KursID">Löschen</a>
@@ -42,7 +42,7 @@
 
                             <tr>
                                 <td>Diskontsatz</td>
-                                <th colspan="2"> % @Model.DiskontSatz.Value</th>
+                                <th colspan="2"> % @Model.RabattRate.Value</th>
                             </tr>
 
                         }
@@ -57,7 +57,7 @@
                         @if (Model.GabRabatt)
                         {
                             <div class="alert alert-success">
-                                "@Model.RabattCode"indirim kodu uygulandı
+                                "@Model.RabattCode"Rabattcode angewendet
                                 <a asp-controller="Korb" asp-action="AngewandterRabattStornieren"> (Stornieren)</a>
                             </div>
 
@@ -77,8 +77,8 @@
                             <div class="text-danger">@TempData["rabattFehler"]</div>
                         }
                     </form>
-                  @*  <a class="btn btn-success" asp-controller="Bestellung" asp-action="Ausloggen">Zahlungsinformationen</a>
-                    <a class="btn btn-warning" asp-controller="StartSeite" asp-action="Index">Stöbern Sie weiter in den Kursen.</a>*@
+                    <a class="btn btn-success" asp-controller="Bestellung" asp-action="Ausloggen">Zahlungsinformationen</a>
+                    <a class="btn btn-warning" asp-controller="StartSeite" asp-action="Index">Stöbern Sie weiter in den Kursen.</a>
                     
                 }
                 else
